@@ -1,4 +1,9 @@
-﻿using System.IO;
+﻿// GrammarParserUnitTests
+// SymbolRuleUnitTest.cs
+// Created 18.02.2018
+// By Александр Кравченков
+
+using System.IO;
 
 namespace GrammarParserUnitTests.Utils {
 

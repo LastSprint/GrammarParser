@@ -24,6 +24,7 @@ namespace GrammarParser.Lexer.Types.Other {
 
         /// <summary>
         /// Правило "Один или ничего".
+        /// <see cref="ZeroOnOneRule"/>
         /// </summary>
         RuleZeroOrOne = 2,
 

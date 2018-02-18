@@ -1,3 +1,8 @@
+// GrammarParserUnitTests
+// SymbolRuleUnitTest.cs
+// Created 18.02.2018
+// By Александр Кравченков
+
 using System.IO;
 
 using GrammarParser.Lexer.Types.Classes;
