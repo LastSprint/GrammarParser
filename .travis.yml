@@ -4,6 +4,7 @@ dist: trusty
 mono: none
 dotnet: 2.1.4
 before_script:
+  - cd GrammarParser
   - dotnet restore
 script:  
   - dotnet test ./GrammarParserUnitTests
