@@ -26,24 +26,6 @@ namespace GrammarParserUnitTests.RuleTests {
 
             Assert.IsFalse(isCheckedSuccess);
         }
-        
-        [TestMethod]
-        public void TestSuccessChekingOneSymbol() {
-
-            // Arrange
-
-            var symbol = 'd';
-            var rule = new SymbolRule(symbol: symbol);
-            var stream = new MemoryStream().FromChar(symbol);
-
-            // Act
-
-            var isCheckedSuccess = rule.Check(stream);
-
-            // Assert
-
-            Assert.IsTrue(isCheckedSuccess);
-        }
 
         [TestMethod]
         public void TestStreamPositionOffsetCorrectlyWithCorrectSymbol() {
@@ -113,6 +95,24 @@ namespace GrammarParserUnitTests.RuleTests {
             Assert.IsTrue(rule1Result, message: "rule1Result is false");
             Assert.IsTrue(rule2Result, message: "rule2Result is false");
             Assert.IsFalse(rule3Result, message: "rule4Result is false");
+        }
+
+        [TestMethod]
+        public void TestSuccessChekingSpecialSymbol() {
+
+            // Arrange
+
+            var symbol = '\r';
+            var rule = new SymbolRule(symbol: symbol);
+            var stream = new MemoryStream().FromString("\rtnmp");
+
+            // Act
+            var startPos = stream.Position;
+            rule.Check(stream);
+
+            // Assert
+
+            Assert.AreEqual(startPos + 1, stream.Position);
         }
     }
 }
