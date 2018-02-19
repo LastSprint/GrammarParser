@@ -3,6 +3,7 @@
 // Created 18.02.2018
 // By Александр Кравченков
 
+using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Types.Classes;
 
 namespace GrammarParser.Lexer.Types.Other {
@@ -20,23 +21,23 @@ namespace GrammarParser.Lexer.Types.Other {
         /// <summary>
         /// Правило группировки.
         /// </summary>
-        RuleGrouping = 1,
+        RuleGrouping = 2,
 
         /// <summary>
         /// Правило "Один или ничего".
-        /// <see cref="ZeroOnOneRule"/>
+        /// <see cref="OneOrZeroRule"/>
         /// </summary>
-        RuleZeroOrOne = 2,
+        RuleZeroOrOne = 1,
 
         /// <summary>
         /// Правило "Много или ничего".
         /// </summary>
-        RuleZeroOrMany = 2,
+        RuleZeroOrMany = 1,
 
         /// <summary>
         /// Правило "Один или много".
         /// </summary>
-        RuleOneOrMany = 2,
+        RuleOneOrMany = 1,
 
         /// <summary>
         /// Правило отрезка.

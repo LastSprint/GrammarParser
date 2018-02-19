@@ -29,6 +29,5 @@ namespace GrammarParser.Lexer.Types.Classes {
             stream.Position = result ? startPosition + 1 : startPosition;
             return result;
         }
-
     }
 }
