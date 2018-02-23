@@ -3,7 +3,6 @@
 // Created 18.02.2018
 // By Александр Кравченков
 
-using System;
 using System.IO;
 
 using GrammarParser.Lexer.Parser.Exceptions;
