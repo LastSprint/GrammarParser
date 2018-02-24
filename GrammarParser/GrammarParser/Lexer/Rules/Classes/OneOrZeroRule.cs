@@ -9,24 +9,24 @@ namespace GrammarParser.Lexer.Rules.Classes {
     /// </summary>
     public class OneOrZeroRule: IRule {
 
-        private IRule _argumentRule;
+        public IRule ArgumentRule { get; }
 
         public RulePriority Priority => RulePriority.RuleZeroOrOne;
 
         public OneOrZeroRule(IRule argument) {
-            this._argumentRule = argument;
+            this.ArgumentRule = argument;
         }
 
         public bool Check(Stream stream) {
 
             var streamStartPosition = stream.Position;
 
-            if (!this._argumentRule.Check(stream)) {
+            if (!this.ArgumentRule.Check(stream)) {
                 // Правило не выполнилось - все норм
                 return true;
             }
 
-            if (!this._argumentRule.Check(stream)) {
+            if (!this.ArgumentRule.Check(stream)) {
                 // Правило отработало только один раз - все норм
                 return true;
             }

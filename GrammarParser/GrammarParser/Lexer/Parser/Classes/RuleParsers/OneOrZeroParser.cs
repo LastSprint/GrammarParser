@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using GrammarParser.Lexer.Parser.Exceptions;
@@ -10,8 +11,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
 
     public class OneOrZeroParser: IParser {
 
-
-        private const char Symbol = '?';
+        public const char Symbol = '?';
 
         public bool IsCurrentRule(IParserImmutableContext context) {
             var(argument, symbol) = this.ProcessContext(context: context);
@@ -32,6 +32,8 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
                     ruleSymbol: $"{OneOrZeroParser.Symbol}");
             }
 
+            context.CurrentStream.Position += 1;
+
             return new OneOrZeroRule(argument);
         }
 
@@ -39,7 +41,13 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
             var startStreamPosition = context.CurrentStream.Position;
             var reader = new StreamReader(context.CurrentStream);
             var symbol = (char)reader.Read();
-            var leftArgument = context.CurrentRuleCollection.First();
+            IRule leftArgument;
+            try {
+                leftArgument = context.CurrentRuleCollection.First();
+            }
+            catch (InvalidOperationException) {
+                throw new RuleParserNotExistedLeftArgumentException(context: context, ruleSymbol: OneOrZeroParser.Symbol.ToString());
+            }
 
             reader.DiscardBufferedData();
             context.CurrentStream.Position = startStreamPosition;
