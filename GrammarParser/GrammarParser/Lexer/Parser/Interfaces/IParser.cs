@@ -3,8 +3,6 @@
 // Created 18.02.2018
 // By Александр Кравченков
 
-using System.IO;
-
 using GrammarParser.Lexer.Types.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Interfaces {
@@ -16,7 +14,23 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
     ///     - Попытаться распарсить и вернуть <see cref="IRule"/>
     /// </summary>
     public interface IParser {
-        IRule Parse(Stream stream);
+
+        /// <summary>
+        /// Проверяет, возможно ли из конкретного состояния контекста распарсить данное правило.
+        /// Не должен кидать исключения, поскольку по сути не является методом парсинга.
+        /// (Так как у нас тут не Nullsafety то с определенной долей везения можно утверждать, что IParser.Parse() вернет null, если распарсить не удалось.
+        /// Но я бы не полагался на это (:
+        /// </summary>
+        /// <param name="context">Контекст парсера-предка.</param>
+        /// <returns>true если парсинг возможен и false в обратном случае</returns>
+        bool IsCurrentRule(IParserImmutableContext context);
+
+        /// <summary>
+        /// Вызывает парсинг соответствующего аргумента.
+        /// </summary>
+        /// <param name="conext">Контекст, парсера-предка.</param>
+        /// <returns>Правило</returns>
+        IRule Parse(IParserImmutableContext conext);
     }
 
 }

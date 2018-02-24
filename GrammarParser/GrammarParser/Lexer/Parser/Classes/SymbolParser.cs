@@ -22,9 +22,33 @@ namespace GrammarParser.Lexer.Parser.Classes {
 
         private const char EndDeclaration = '\'';
 
+        public bool IsCurrentRule(IParserImmutableContext context) {
+            var stream = context.CurrentStream;
+            var startPosition = stream.Position;
+            var reader = new StreamReader(stream);
 
-        public IRule Parse(Stream stream) {
+            var startDeclaration = reader.Read();
+            var symbol = (char)reader.Read();
+            var endDeclaration = reader.Read();
 
+            reader.DiscardBufferedData();
+            stream.Position = startPosition;
+
+
+            if (startDeclaration != StartDeclaration) {
+                return false;
+            }
+
+            if (symbol == StartDeclaration && symbol == EndDeclaration) {
+                return false;
+            }
+
+            return endDeclaration == EndDeclaration;
+        }
+
+        public IRule Parse(IParserImmutableContext context) {
+
+            var stream = context.CurrentStream;
             var startPosition = stream.Position;
             var reader = new StreamReader(stream);
 

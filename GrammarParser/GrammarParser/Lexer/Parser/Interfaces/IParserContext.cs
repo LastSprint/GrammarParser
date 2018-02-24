@@ -14,7 +14,7 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         /// <summary>
         /// Незименяемая очередь уже разобранных правил.
         /// </summary>
-        IImmutableQueue<IRule> CurrentRuleCollection { get; }
+        IReadOnlyCollection<IRule> CurrentRuleCollection { get; }
 
         /// <summary>
         /// Поток разбираемых лексем.
@@ -31,7 +31,7 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         /// <summary>
         /// Очередь уже разобранных правил.
         /// </summary>
-        Queue<IRule> ParsedRules { get; set; }
+        Stack<IRule> ParsedRules { get; set; }
 
     }
 

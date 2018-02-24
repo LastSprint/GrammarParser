@@ -28,11 +28,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'t\'");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var result = parser.Parse(stream);
+            var result = parser.Parse(context);
 
             // Assert
 
@@ -45,11 +46,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'t\'sdjhfgjhsdgf");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var result = parser.Parse(stream);
+            var result = parser.Parse(context);
 
             // Assert
 
@@ -62,15 +64,16 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'t\'\'t\'\'t\'\'t\'\'t\'");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
             var result = new List<IRule> {
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream)
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context)
             };
 
 
@@ -89,11 +92,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("a");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var result = parser.Parse(stream);
+            var result = parser.Parse(context);
 
             // Assert
 
@@ -106,11 +110,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("asdfsdf");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var result = parser.Parse(stream);
+            var result = parser.Parse(context);
 
             // Assert
 
@@ -123,11 +128,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'\'werwer");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var action = new Action(() => { parser.Parse(stream); });
+            var action = new Action(() => { parser.Parse(context); });
         
 
             // Assert
@@ -141,11 +147,12 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'asfasdasdasd\'werwer");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
 
-            var action = new Action(() => { parser.Parse(stream); });
+            var action = new Action(() => { parser.Parse(context); });
 
 
             // Assert
@@ -162,6 +169,7 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("\'t\'\'t\'\'t\'\'t\'\'t\'");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
             // Act
@@ -169,11 +177,11 @@ namespace GrammarParserUnitTests.ParseTest {
             var startStreamPos = stream.Position;
 
             var result = new List<IRule> {
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream),
-                parser.Parse(stream)
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context),
+                parser.Parse(context)
             };
 
             var endStreamPosition = stream.Position;
@@ -190,6 +198,7 @@ namespace GrammarParserUnitTests.ParseTest {
             // Arrange
 
             var stream = new MemoryStream().FromString("a");
+            var context = new DefaultParserContext(stream: stream);
             var parser = new SymbolParser();
 
 
@@ -197,7 +206,7 @@ namespace GrammarParserUnitTests.ParseTest {
 
             var startPos = stream.Position;
 
-            parser.Parse(stream);
+            parser.Parse(context);
             var endPos = stream.Position;
 
             // Assert
