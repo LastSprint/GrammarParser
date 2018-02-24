@@ -1,4 +1,5 @@
-﻿using GrammarParser.Lexer.Parser.Interfaces;
+﻿using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
+using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Lexer.Types.Interfaces;
 

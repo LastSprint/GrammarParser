@@ -6,7 +6,7 @@ using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.Types.Interfaces;
 
-namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
+namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers {
 
     public abstract class SingleRuleParser: IParser {
 
@@ -42,8 +42,16 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
         protected (IRule leftArgument, string symbol) ProcessContext(IParserImmutableContext context) {
             var startStreamPosition = context.CurrentStream.Position;
             var reader = new StreamReader(context.CurrentStream);
-            var symbol = (char)reader.Read();
+            var terminateSequence = "";
+
+            for (var i = 0; i < this.TerminateSymbol.Length; i++) {
+                terminateSequence += (char)reader.Read();
+            }
+
             IRule leftArgument;
+
+            reader.DiscardBufferedData();
+            context.CurrentStream.Position = startStreamPosition;
 
             try {
                 leftArgument = context.CurrentRuleCollection.First();
@@ -51,10 +59,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
                 leftArgument = null;
             }
 
-            reader.DiscardBufferedData();
-            context.CurrentStream.Position = startStreamPosition;
-
-            return (leftArgument: leftArgument, symbol: symbol.ToString());
+            return (leftArgument: leftArgument, symbol: terminateSequence);
         }
 
     }
