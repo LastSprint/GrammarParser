@@ -5,27 +5,35 @@ using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers;
 using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Types.Classes;
+using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 
 using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GrammarParserUnitTests.ParseTest {
+namespace GrammarParserUnitTests.ParseTest.SingleRuleParser {
 
-    [TestClass]
-    public class OneOrZeroParserUnitTest {
+    public class BaseSingleRuleParserUnitTest {
 
     #region Success cases
+
+        private readonly string _terminateSequence;
+
+        private readonly IParserFaсtory _parserFactory;
+
+        public BaseSingleRuleParserUnitTest(string terminateSequence, IParserFaсtory parserFactory) {
+            this._terminateSequence = terminateSequence;
+            this._parserFactory = parserFactory;
+        }
 
         [TestMethod]
         public void TestParseRuleSuccessWithOneSymbol() {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString(OneOrZeroParser.Symbol.ToString());
+            var stream = new MemoryStream().FromString(this._terminateSequence);
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
             var leftArgument = new SymbolRule('b');
             context.ParsedRules.Push(leftArgument);
 
@@ -45,9 +53,9 @@ namespace GrammarParserUnitTests.ParseTest {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{OneOrZeroParser.Symbol}fgadcbv");
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             var leftArgument1 = new SymbolRule('a');
             var leftArgument2 = new SymbolRule('b');
@@ -61,7 +69,7 @@ namespace GrammarParserUnitTests.ParseTest {
 
             var streamStart = stream.Position;
             var checkResult = parser.IsCurrentRule(context);
-            var result = parser.Parse(context) as OneOrZeroRule;
+            var result = parser.Parse(context) as ISingleArgumentRule;
 
             // Assert
 
@@ -76,9 +84,9 @@ namespace GrammarParserUnitTests.ParseTest {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{OneOrZeroParser.Symbol}fgadcbv");
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             var leftArgument1 = new SymbolRule('a');
             var leftArgument2 = new SymbolRule('b');
@@ -91,7 +99,7 @@ namespace GrammarParserUnitTests.ParseTest {
             // Act
 
             
-            var result = parser.Parse(context) as OneOrZeroRule;
+            var result = parser.Parse(context) as ISingleArgumentRule;
 
             // Assert
 
@@ -103,9 +111,9 @@ namespace GrammarParserUnitTests.ParseTest {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{OneOrZeroParser.Symbol}fgadcbv");
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             var leftArgument = new SymbolRule('a');
 
@@ -126,9 +134,9 @@ namespace GrammarParserUnitTests.ParseTest {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{OneOrZeroParser.Symbol}fgadcbv");
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             var leftArgument1 = new SymbolRule('a');
 
@@ -155,7 +163,7 @@ namespace GrammarParserUnitTests.ParseTest {
 
             var stream = new MemoryStream().FromString($"fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             var leftArgument1 = new SymbolRule('a');
 
@@ -178,7 +186,7 @@ namespace GrammarParserUnitTests.ParseTest {
 
             var stream = new MemoryStream().FromString($"fgadcbv");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             context.ParsedRules.Push(null);
 
@@ -199,7 +207,7 @@ namespace GrammarParserUnitTests.ParseTest {
 
             var stream = new MemoryStream().FromString("hgasfdhgasdfghagshd");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
             var leftArgument = new SymbolRule('b');
             context.ParsedRules.Push(leftArgument);
 
@@ -215,14 +223,13 @@ namespace GrammarParserUnitTests.ParseTest {
         }
 
         [TestMethod]
-        public void TestThrowsNullLeftArgumentException()
-        {
+        public void TestThrowsNullLeftArgumentException() {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString("hgasfdhgasdfghagshd");
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}hgasfdhgasdfghagshd");
             var context = new DefaultParserContext(stream: stream);
-            var parser = new OneOrZeroParser();
+            var parser = this._parserFactory.GetNewParser();
 
             // Act
 
@@ -231,6 +238,25 @@ namespace GrammarParserUnitTests.ParseTest {
             // Assert
 
             Assert.ThrowsException<RuleParserNotExistedLeftArgumentException>(action);
+        }
+
+        [TestMethod]
+        public void TestThatChekMethodDoentThrowsException()
+        {
+
+            // Arrange
+
+            var stream = new MemoryStream().FromString($"{this._terminateSequence}hgasfdhgasdfghagshd");
+            var context = new DefaultParserContext(stream: stream);
+            var parser = this._parserFactory.GetNewParser();
+
+            // Act
+
+            var result = parser.IsCurrentRule(context);
+
+            // Assert
+
+            Assert.IsFalse(result);
         }
 
         #endregion

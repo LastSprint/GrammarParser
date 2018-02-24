@@ -7,7 +7,7 @@ using System.IO;
 
 using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.Types.Classes;
+using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Types.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Classes {

@@ -5,7 +5,9 @@
 
 using System.IO;
 
-using GrammarParser.Lexer.Types.Classes;
+using GrammarParser.Lexer.Rules.Classes;
+using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
+using GrammarParser.Lexer.Types.Other;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GrammarParserUnitTests.Utils;
@@ -14,6 +16,22 @@ namespace GrammarParserUnitTests.RuleTests {
 
     [TestClass]
     public class SymbolRuleUnitTest {
+
+        [TestMethod]
+        public void TestRulePriority() {
+            
+            // arrage
+
+            var symbol = 'a';
+
+            // act
+
+            var rule = new SymbolRule(symbol: symbol);
+
+            // assert
+
+            Assert.AreEqual(rule.Priority, RulePriority.RuleSymbol);
+        }
 
         [TestMethod]
         public void TestFailChekingOneSymbol() {

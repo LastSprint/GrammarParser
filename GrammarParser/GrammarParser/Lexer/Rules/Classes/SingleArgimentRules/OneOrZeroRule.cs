@@ -1,21 +1,19 @@
 ﻿using System.IO;
+
 using GrammarParser.Lexer.Types.Interfaces;
 using GrammarParser.Lexer.Types.Other;
 
-namespace GrammarParser.Lexer.Rules.Classes {
+namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
 
     /// <summary>
     /// Вложенное правило выполняется либо один раз либо не выполняется
     /// </summary>
-    public class OneOrZeroRule: IRule {
-
+    public class OneOrZeroRule: ISingleArgumentRule {
         public IRule ArgumentRule { get; }
 
         public RulePriority Priority => RulePriority.RuleZeroOrOne;
 
-        public OneOrZeroRule(IRule argument) {
-            this.ArgumentRule = argument;
-        }
+        public OneOrZeroRule(IRule argument) => this.ArgumentRule = argument;
 
         public bool Check(Stream stream) {
 

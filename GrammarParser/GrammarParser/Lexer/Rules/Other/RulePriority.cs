@@ -4,7 +4,7 @@
 // By Александр Кравченков
 
 using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Types.Classes;
+using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 
 namespace GrammarParser.Lexer.Types.Other {
 

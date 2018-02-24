@@ -1,15 +1,32 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+
 using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Types.Classes;
+using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
+using GrammarParser.Lexer.Types.Other;
+
 using GrammarParserUnitTests.Utils;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GrammarParserUnitTests.RuleTests {
+namespace GrammarParserUnitTests.RuleTests.SingleArgumentRuleUnitTest {
 
     [TestClass]
     public class OneOrZeroRuleUnitTest {
+
+        [TestMethod]
+        public void TestRulePriority() {
+
+            var argumentRule = new SymbolRule(symbol: 'b');
+
+            //act
+
+            var rule = new OneOrZeroRule(argument: argumentRule);
+
+            //assert
+
+            Assert.AreEqual(rule.Priority, RulePriority.RuleZeroOrOne);
+        }
 
         [TestMethod]
         public void TestSuccessChekingOneSymbolWithFailArgumentRule() {

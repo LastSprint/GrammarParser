@@ -4,16 +4,16 @@ using GrammarParser.Lexer.Types.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Classes.RuleParsers {
 
-    public class OneOrZeroParser: SingleRuleParser {
+    public class ZeroOrManyParser: SingleRuleParser {
 
-        public const char Symbol = '?';
+        public const char Symbol = '*';
 
         protected override string TerminateSymbol => Symbol.ToString();
 
         public override IRule Parse(IParserImmutableContext context) {
             var result = base.TryParse(context);
 
-            return result == null ? null : new OneOrZeroRule(result);
+            return result == null ? null : new ZeroOrManyRule(result);
         }
 
     }

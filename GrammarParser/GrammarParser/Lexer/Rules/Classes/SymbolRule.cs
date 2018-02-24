@@ -8,7 +8,7 @@ using System.IO;
 using GrammarParser.Lexer.Types.Interfaces;
 using GrammarParser.Lexer.Types.Other;
 
-namespace GrammarParser.Lexer.Types.Classes {
+namespace GrammarParser.Lexer.Rules.Classes {
 
     /// <summary>
     /// Правило для определения одного символа. Имеет вид: '$any_utf_symbol$'
