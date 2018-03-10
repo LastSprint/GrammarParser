@@ -4,7 +4,7 @@ using System.Linq;
 
 using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers {
 

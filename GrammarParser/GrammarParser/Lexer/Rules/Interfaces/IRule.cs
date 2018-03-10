@@ -6,7 +6,7 @@
 using System.IO;
 using GrammarParser.Lexer.Types.Other;
 
-namespace GrammarParser.Lexer.Types.Interfaces {
+namespace GrammarParser.Lexer.Rules.Interfaces {
 
     /// <summary>
     /// Абстрактное правило

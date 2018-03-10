@@ -1,4 +1,4 @@
-﻿using GrammarParser.Lexer.Types.Interfaces;
+﻿using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
 

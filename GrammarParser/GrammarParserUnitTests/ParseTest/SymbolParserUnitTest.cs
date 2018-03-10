@@ -9,8 +9,7 @@ using System.IO;
 
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Exceptions;
-using GrammarParser.Lexer.Types.Interfaces;
-
+using GrammarParser.Lexer.Rules.Interfaces;
 using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;

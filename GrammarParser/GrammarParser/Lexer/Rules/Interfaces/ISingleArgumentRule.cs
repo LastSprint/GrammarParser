@@ -3,8 +3,6 @@
 // Created 18.02.2018
 // By Александр Кравченков
 
-using GrammarParser.Lexer.Types.Interfaces;
-
 namespace GrammarParser.Lexer.Rules.Interfaces {
 
     /// <summary>

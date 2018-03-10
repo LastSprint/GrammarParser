@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 
-namespace GrammarParser.Lexer.Parser.Classes
-{
+namespace GrammarParser.Lexer.Parser.Classes {
 
     public class DefaultParserContext: IParserContext {
 
@@ -20,13 +19,17 @@ namespace GrammarParser.Lexer.Parser.Classes
             this.ParsedRules = new Stack<IRule>();
         }
 
+        public void Merge(IParserContext context) {
+            this.CurrentStream.Position = context.CurrentStream.Position;
+            
+        }
+
         public override string ToString() {
             var result = $"Stream position: {this.CurrentStream.Position}";
             result += $"{Environment.NewLine}Context:";
             foreach (var parsedRule in this.ParsedRules) {
                 result += $"{Environment.NewLine}{parsedRule}";
             }
-
             return result;
         }
     }

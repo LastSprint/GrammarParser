@@ -4,8 +4,7 @@
 // By Александр Кравченков
 
 using System.IO;
-
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 using GrammarParser.Lexer.Types.Other;
 
 namespace GrammarParser.Lexer.Rules.Classes {

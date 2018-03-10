@@ -1,6 +1,4 @@
-﻿using GrammarParser.Lexer.Types.Interfaces;
-
-namespace GrammarParser.Lexer.Rules.Interfaces {
+﻿namespace GrammarParser.Lexer.Rules.Interfaces {
 
     public interface ITwoArgumentRule: IRule {
 

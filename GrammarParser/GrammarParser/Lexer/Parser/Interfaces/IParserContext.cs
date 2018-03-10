@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Interfaces {
 

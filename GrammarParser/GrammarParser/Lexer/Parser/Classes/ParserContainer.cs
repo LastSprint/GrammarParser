@@ -1,10 +1,8 @@
-﻿
-using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Classes {
 
@@ -20,6 +18,5 @@ namespace GrammarParser.Lexer.Parser.Classes {
         public bool IsCurrentRule(IParserImmutableContext context) => this._parsers.Any(x => x.IsCurrentRule(context));
 
         public IRule Parse(IParserImmutableContext conext) => this._parsers.First(x => x.IsCurrentRule(conext)).Parse(conext);
-
     }
 }

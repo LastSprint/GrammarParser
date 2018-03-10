@@ -3,7 +3,7 @@
 // Created 18.02.2018
 // By Александр Кравченков
 
-using GrammarParser.Lexer.Types.Interfaces;
+using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Interfaces {
 
