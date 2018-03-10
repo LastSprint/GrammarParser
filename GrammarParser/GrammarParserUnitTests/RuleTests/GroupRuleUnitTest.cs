@@ -285,6 +285,7 @@ namespace GrammarParserUnitTests.RuleTests {
             // Assert
 
             Assert.IsFalse(result, message: "result is false");
+
         }
 
         [TestMethod]
@@ -309,10 +310,9 @@ namespace GrammarParserUnitTests.RuleTests {
 
             var result = rule.Check(stream);
 
-
             // Assert
 
-            Assert.IsFalse(result, message: "result is false");
+            Assert.IsTrue(result, message: "result is false");
         }
 
         [TestMethod]
