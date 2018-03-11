@@ -14,16 +14,16 @@ namespace GrammarParser.Lexer.Rules.Classes {
     /// </summary>
     public class SymbolRule: IRule {
 
-        private readonly char _symbol;
+        public readonly char Symbol;
 
         public RulePriority Priority => RulePriority.RuleSymbol;
 
-        public SymbolRule(char symbol) => this._symbol = symbol;
+        public SymbolRule(char symbol) => this.Symbol = symbol;
 
         public bool Check(Stream stream) {
             var startPosition = stream.Position;
             var reader = new StreamReader(stream);
-            var result = reader.Read() == this._symbol;
+            var result = reader.Read() == this.Symbol;
             reader.DiscardBufferedData();
             stream.Position = result ? startPosition + 1 : startPosition;
             return result;

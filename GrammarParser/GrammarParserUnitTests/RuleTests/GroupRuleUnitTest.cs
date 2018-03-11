@@ -261,7 +261,7 @@ namespace GrammarParserUnitTests.RuleTests {
 
         [TestMethod]
         public void TestHardRuleFailedWithBigString() {
-
+            // FIXME: Нужноп одумать о том как вообще работаь с чеком после создания AST, поэтому пока пусть тесты для правил не выполняются. Так я хотя бы не забуду об этом.
             // Arrange
 
             var symbol1 = 'g';
@@ -280,12 +280,11 @@ namespace GrammarParserUnitTests.RuleTests {
             // Act
 
             var result = rule.Check(stream);
-
+            
 
             // Assert
 
             Assert.IsFalse(result, message: "result is false");
-
         }
 
         [TestMethod]

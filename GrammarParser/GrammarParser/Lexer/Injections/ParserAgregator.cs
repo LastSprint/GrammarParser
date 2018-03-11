@@ -10,18 +10,16 @@ namespace GrammarParser.Lexer.Injections {
     /// </summary>
     public class ParserAgregator: IParser {
 
-        private readonly IReadOnlyList<IParser> _parsers;
+        public readonly IReadOnlyList<IParser> Parsers;
 
-        public ParserAgregator(IReadOnlyList<IParser> parsers) {
-            this._parsers = parsers;
-        }
+        public ParserAgregator(IReadOnlyList<IParser> parsers) => this.Parsers = parsers;
 
         public bool IsCurrentRule(IParserImmutableContext context) {
-            return this._parsers.Any(x => x.IsCurrentRule(context));
+            return this.Parsers.Any(x => x.IsCurrentRule(context));
         }
 
         public IRule Parse(IParserImmutableContext conext) {
-            return this._parsers.First(x => x.IsCurrentRule(conext))?.Parse(conext);
+            return this.Parsers.First(x => x.IsCurrentRule(conext))?.Parse(conext);
         }
     }
 }

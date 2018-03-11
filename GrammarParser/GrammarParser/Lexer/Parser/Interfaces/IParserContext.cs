@@ -12,7 +12,7 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
     public interface IParserImmutableContext {
 
         /// <summary>
-        /// Незименяемая очередь уже разобранных правил.
+        /// Незименяемая коллекция уже разобранных правил.
         /// </summary>
         IReadOnlyCollection<IRule> CurrentRuleCollection { get; }
 
@@ -29,7 +29,7 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
     public interface IParserContext: IParserImmutableContext {
 
         /// <summary>
-        /// Очередь уже разобранных правил.
+        /// Коллекция уже разобранных правил.
         /// </summary>
         Stack<IRule> ParsedRules { get; set; }
 

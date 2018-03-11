@@ -1,4 +1,4 @@
-﻿using GrammarParser.Lexer.Parser.Classes.RuleParsers;
+﻿using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

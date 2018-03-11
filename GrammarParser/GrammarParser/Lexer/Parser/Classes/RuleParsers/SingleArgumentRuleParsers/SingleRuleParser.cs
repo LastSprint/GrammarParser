@@ -12,8 +12,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
 
         protected abstract string TerminateSymbol { get; }
 
-        public bool IsCurrentRule(IParserImmutableContext context)
-        {
+        public virtual bool IsCurrentRule(IParserImmutableContext context) {
             var (argument, symbol) = this.ProcessContext(context: context);
 
             return symbol.Equals(this.TerminateSymbol) && argument != null;
