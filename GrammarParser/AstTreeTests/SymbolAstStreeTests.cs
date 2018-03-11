@@ -4,13 +4,10 @@ using System.Linq;
 
 using GrammarParser.AstTree;
 using GrammarParser.Lexer;
-using GrammarParser.Lexer.Configurations;
-using GrammarParser.Lexer.Injections.Injectors.Atomic;
-using GrammarParser.Lexer.Rules.Classes;
 
 using GrammarParserUnitTests.Utils;
 
-using LexerUnitTests;
+using LexerUnitTests.LexerTests.Atomic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -19,7 +16,7 @@ namespace AstTreeTests {
     [TestClass]
     public class SymbolAstStreeTests {
 
-        public ILexer Lexer => new LexerOnlyWithSymbolParser().Lexer;
+        public ILexer Lexer => new LexerAtomicWithSymbolParser().Lexer;
 
         [TestMethod]
         public void TestThatLexerGenerateRightTreeFromOneSymbolAndCheckSuccessed() {

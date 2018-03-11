@@ -12,6 +12,10 @@ namespace GrammarParser.Lexer.Parser.Classes {
         public IReadOnlyCollection<IRule> CurrentRuleCollection => this.ParsedRules;
         public Stack<IRule> ParsedRules { get; set; }
 
+        public IRule Pop() => this.ParsedRules.Count == 0 ? null : this.ParsedRules.Pop();
+
+        public IRule Peek() => this.ParsedRules.Count == 0 ? null : this.ParsedRules.Peek();
+
         public Stream CurrentStream { get; }
 
         public DefaultParserContext(Stream stream) {

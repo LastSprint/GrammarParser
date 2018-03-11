@@ -14,7 +14,6 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
 
         public virtual bool IsCurrentRule(IParserImmutableContext context) {
             var (argument, symbol) = this.ProcessContext(context: context);
-
             return symbol.Equals(this.TerminateSymbol) && argument != null;
         }
 
@@ -34,7 +33,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
             }
 
             context.CurrentStream.Position += 1;
-
+            context.Pop();
             return argument;
         }
 
@@ -47,16 +46,12 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
                 terminateSequence += (char)reader.Read();
             }
 
-            IRule leftArgument;
+
 
             reader.DiscardBufferedData();
             context.CurrentStream.Position = startStreamPosition;
 
-            try {
-                leftArgument = context.CurrentRuleCollection.First();
-            } catch (InvalidOperationException) {
-                leftArgument = null;
-            }
+            var leftArgument = context.Peek();
 
             return (leftArgument: leftArgument, symbol: terminateSequence);
         }

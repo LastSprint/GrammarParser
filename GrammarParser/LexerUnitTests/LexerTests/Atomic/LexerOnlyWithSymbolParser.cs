@@ -14,9 +14,9 @@ using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LexerUnitTests {
+namespace LexerUnitTests.LexerTests.Atomic {
     [TestClass]
-    public class LexerOnlyWithSymbolParser {
+    public class LexerAtomicWithSymbolParser {
 
         public ILexer Lexer => new Lexer(new SymbolParserInjector().Injection(),
             new LexerBuilder(new SymbolParserInjector()));

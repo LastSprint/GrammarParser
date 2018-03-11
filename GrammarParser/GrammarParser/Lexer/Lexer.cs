@@ -55,7 +55,7 @@ namespace GrammarParser.Lexer {
                             break;
                         }
                         
-                        throw new ArgumentOutOfRangeException($"{symbol} не разобран ни одним из существующих правил");
+                        throw new ArgumentOutOfRangeException($"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this._context}");
                 }
                 symbol = stream.CurrentSymbol();
             }

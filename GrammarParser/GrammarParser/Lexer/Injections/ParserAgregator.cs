@@ -19,7 +19,7 @@ namespace GrammarParser.Lexer.Injections {
         }
 
         public IRule Parse(IParserImmutableContext conext) {
-            return this.Parsers.First(x => x.IsCurrentRule(conext))?.Parse(conext);
+            return this.Parsers.FirstOrDefault(x => x.IsCurrentRule(conext))?.Parse(conext);
         }
     }
 }

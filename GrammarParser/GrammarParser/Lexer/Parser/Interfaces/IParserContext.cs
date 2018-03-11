@@ -17,6 +17,18 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         IReadOnlyCollection<IRule> CurrentRuleCollection { get; }
 
         /// <summary>
+        /// Возвращает последний элемент в стеке (предварительно удаляя его в самом контексте)
+        /// Этот метод немного нарушает иммутабельность, но в необходимых пределах.
+        /// В случае, если стек пуст вернет null
+        /// </summary>
+        IRule Pop();
+
+        /// <summary>
+        /// <see cref="Stack{T}.Peek"/> только этот вернет null если пуcто.
+        /// </summary>
+        IRule Peek();
+
+        /// <summary>
         /// Поток разбираемых лексем.
         /// </summary>
         Stream CurrentStream { get; }
