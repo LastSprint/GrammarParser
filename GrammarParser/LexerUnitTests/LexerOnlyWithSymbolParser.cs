@@ -18,7 +18,7 @@ namespace LexerUnitTests {
     [TestClass]
     public class LexerOnlyWithSymbolParser {
 
-        private ILexer _lexer => new Lexer(new SymbolParserInjector().Injection(),
+        public ILexer Lexer => new Lexer(new SymbolParserInjector().Injection(),
             new LexerBuilder(new SymbolParserInjector()));
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace LexerUnitTests {
 
             Assert.IsNotNull(parsers);
             Assert.AreEqual(parsers.Parsers.Count, 1);
-            parsers?.Parsers.ToList().ForEach(x => Assert.IsInstanceOfType(x, typeof(SymbolParser)));
+            parsers.Parsers.ToList().ForEach(x => Assert.IsInstanceOfType(x, typeof(SymbolParser)));
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace LexerUnitTests {
 
             var symbol = 'a';
             var stream = new MemoryStream().FromString($"\'{symbol}\'");
-            var lexer = this._lexer;
+            var lexer = this.Lexer;
 
             // Act
 
@@ -56,7 +56,7 @@ namespace LexerUnitTests {
 
             Assert.AreEqual(1, parsedRules.Count);
             Assert.IsInstanceOfType(parsedRules.First(), typeof(SymbolRule));
-            Assert.AreEqual(symbol, (parsedRules.First() as SymbolRule).Symbol);
+            Assert.AreEqual(symbol, ((SymbolRule) parsedRules.First()).Symbol);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace LexerUnitTests {
             var str = new List<char> { 'a', 'b', 'c', 'd' };
             var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
             var stream = new MemoryStream().FromString(mapped);
-            var lexer = this._lexer;
+            var lexer = this.Lexer;
 
             // Act
 
@@ -91,7 +91,7 @@ namespace LexerUnitTests {
             var str = new List<char> { 'a', 'b', 'c', 'd' };
             var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
             var stream = new MemoryStream().FromString(mapped + "a");
-            var lexer = this._lexer;
+            var lexer = this.Lexer;
 
             // Act
 
