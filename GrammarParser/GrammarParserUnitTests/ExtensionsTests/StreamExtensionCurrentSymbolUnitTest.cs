@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GrammarParserUnitTests.ExtensionsTests {
 
     [TestClass]
-    public class StreamExtensionUnitTest {
+    public class StreamExtensionCurrentSymbolUnitTest {
 
         [TestMethod]
         public void TestThatCharacterIsCorrectInStart() {

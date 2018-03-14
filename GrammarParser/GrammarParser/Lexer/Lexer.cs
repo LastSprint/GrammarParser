@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
-
+using GrammarParser.Lexer.Exceptions;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.Rules.Classes;
@@ -10,13 +10,12 @@ using GrammarParser.Library;
 using GrammarParser.Library.Extensions;
 
 namespace GrammarParser.Lexer {
-    
+
     /// <summary>
     /// Объет, который умеет разбирать поток символов в поток правил.
     /// То есть он умеет смтроить AST дерево по конкретной грамматике.
     /// </summary>
-    public class Lexer: ILexer {
-
+    public class Lexer : ILexer {
         private const char StartGroup = '(';
         private const char EndGroup = ')';
 
@@ -32,20 +31,25 @@ namespace GrammarParser.Lexer {
         }
 
         public IParserContext Parse(Stream stream) {
-            //TODO: Убрать рекурсию. Серьезно. 
             this._context = new DefaultParserContext(stream: stream);
             var symbol = stream.CurrentSymbol();
             while (symbol != null) {
                 switch (symbol) {
-
                     case Lexer.EndGroup:
                         return this._context;
                     case null:
                         return this._context;
-
                     case Lexer.StartGroup:
+                        stream.TryToSeekToNext();
                         var context = this._selfBuilder.Build(stream);
                         var result = context.Parse(stream).ParsedRules.ToArray().Reverse();
+
+                        if (stream.CurrentSymbol() != Lexer.EndGroup) {
+                            throw new LexerBadGroupDeclarationException(this._context);
+                        }
+
+                        stream.TryToSeekToNext();
+
                         var rule = new GroupRule(result.ToImmutableList());
                         this._context.ParsedRules.Push(rule);
                         break;
@@ -54,12 +58,12 @@ namespace GrammarParser.Lexer {
                             this._context.ParsedRules.Push(this._parser.Parse(this._context));
                             break;
                         }
-                        
-                        throw new ArgumentOutOfRangeException($"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this._context}");
+                        throw new ArgumentOutOfRangeException(
+                            $"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this._context}");
                 }
+
                 symbol = stream.CurrentSymbol();
             }
-
             return this._context;
         }
     }

@@ -10,16 +10,16 @@ namespace GrammarParser.Lexer.Rules.Classes {
 
         public RulePriority Priority { get; }
 
-        private readonly IReadOnlyList<IRule> _nestedRules;
+        public IReadOnlyList<IRule> NestedRules { get; }
 
         public GroupRule(IReadOnlyList<IRule> nestedRules) {
             this.Priority = RulePriority.RuleGrouping;
-            this._nestedRules = nestedRules;
+            this.NestedRules = nestedRules;
         }
 
         public bool Check(Stream stream) {
 
-            foreach (var nestedRule in this._nestedRules) {
+            foreach (var nestedRule in this.NestedRules) {
                 if (!nestedRule.Check(stream)) {
                     return false;
                 }

@@ -5,6 +5,7 @@ using System.Linq;
 
 using GrammarParser.Lexer;
 using GrammarParser.Lexer.Configurations;
+using GrammarParser.Lexer.Exceptions;
 using GrammarParser.Lexer.Injections;
 using GrammarParser.Lexer.Injections.Injectors.Atomic;
 using GrammarParser.Lexer.Parser.Classes;
@@ -100,6 +101,65 @@ namespace LexerUnitTests.LexerTests.Atomic {
             // Assert
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(parsedRules);
+        }
+
+        [TestMethod]
+        public void TestThatLexerSuccessParseGroupAsWraper() {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
+            var stream = new MemoryStream().FromString($"({mapped})");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var parseResult = lexer.Parse(stream).ParsedRules.ToList();
+
+            // Assert
+
+            Assert.AreEqual(1, parseResult.Count);
+            Assert.IsInstanceOfType(parseResult[0], typeof(GroupRule));
+            Assert.AreEqual(str.Count, (parseResult[0] as GroupRule).NestedRules.Count);
+            foreach (var nestedRule in (parseResult[0] as GroupRule).NestedRules) {
+                Assert.IsInstanceOfType(nestedRule, typeof(SymbolRule));
+            }
+        }
+
+        [TestMethod]
+        public void TestThatLexerSuccessParseGroupAsInternal() {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
+            var stream = new MemoryStream().FromString($"{mapped}({mapped}){mapped}");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var parseResult = lexer.Parse(stream).ParsedRules.ToList();
+
+            // Assert
+
+            Assert.AreEqual(str.Count * 2 + 1, parseResult.Count);
+        }
+
+        [TestMethod]
+        public void TestThatLexerFailedParseGroupWithoutEnd() {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
+            var stream = new MemoryStream().FromString($"{mapped}({mapped}{mapped}");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var action = new Action(() => lexer.Parse(stream));
+
+            // Assert
+
+            Assert.ThrowsException<LexerBadGroupDeclarationException>(action);
         }
     }
 }

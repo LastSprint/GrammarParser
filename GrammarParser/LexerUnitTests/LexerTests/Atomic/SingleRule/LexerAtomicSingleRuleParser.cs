@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.Lexer;
+using GrammarParser.Lexer.Exceptions;
 using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 
@@ -73,8 +74,7 @@ namespace LexerUnitTests.LexerTests.Atomic.SingleRule {
         }
 
         [TestMethod]
-        public void TestThatLexerFailedParseWithOneExcessSymbol()
-        {
+        public void TestThatLexerFailedParseWithOneExcessSymbol() {
 
             // Arrange
             var str = new List<char> { 'a', 'b', 'c', 'd' };
@@ -89,6 +89,63 @@ namespace LexerUnitTests.LexerTests.Atomic.SingleRule {
             // Assert
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(parsedRules);
+        }
+
+        [TestMethod]
+        public void TestThatLexerSuccessParseGroupAsWraper() {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
+            var stream = new MemoryStream().FromString($"({mapped}){this.Symbol}");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var parseResult = lexer.Parse(stream).ParsedRules.ToList();
+
+            // Assert
+
+            Assert.AreEqual(1, parseResult.Count);
+            Assert.IsInstanceOfType(parseResult[0], this.CurrentRuleType);
+            Assert.IsInstanceOfType((parseResult[0] as ISingleArgumentRule).ArgumentRule, typeof(GroupRule));
+        }
+
+        [TestMethod]
+        public void TestThatLexerSuccessParseGroupAsInternal() {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'{this.Symbol}"));
+            var stream = new MemoryStream().FromString($"{mapped}({mapped}){this.Symbol}{mapped}");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var parseResult = lexer.Parse(stream).ParsedRules.ToList();
+
+            // Assert
+
+            Assert.AreEqual(str.Count * 2 + 1, parseResult.Count);
+        }
+
+        [TestMethod]
+        public void TestThatLexerFailedParseGroupWithoutEnd()
+        {
+
+            // Arrange
+            var str = new List<char> { 'a', 'b', 'c', 'd' };
+            var mapped = string.Join(string.Empty, str.Select(x => $"\'{x}\'"));
+            var stream = new MemoryStream().FromString($"{mapped}({mapped}{this.Symbol}{mapped}");
+            var lexer = this.Lexer;
+
+            // Act
+
+            var action = new Action(() => lexer.Parse(stream));
+
+            // Assert
+
+            Assert.ThrowsException<LexerBadGroupDeclarationException>(action);
         }
     }
 }

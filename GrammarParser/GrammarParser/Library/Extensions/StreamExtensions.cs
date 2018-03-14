@@ -20,5 +20,19 @@ namespace GrammarParser.Library.Extensions {
             return currentChar;
         }
 
+        /// <summary>
+        /// Пытается сдвинть указатель потока на седующий символ.
+        /// </summary>
+        public static void TryToSeekToNext(this Stream stream) {
+            var streamPos = stream.Position;
+            var reader = new StreamReader(stream);
+            var isEndOfStream = reader.EndOfStream;
+            if (!isEndOfStream) {
+                reader.Read();
+            }
+            reader.DiscardBufferedData();
+            stream.Position = streamPos + 1;
+        }
+
     }
 }
