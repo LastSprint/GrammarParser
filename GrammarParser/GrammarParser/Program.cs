@@ -1,30 +1,44 @@
 ﻿using System;
 using System.IO;
+using GrammarParser.Lexer.Configurations;
+using GrammarParser.Lexer.Injections.Injectors;
 
 namespace GrammarParser {
 
     class Program {
 
+        public static class MemoryStreamExtension {
+
+            public static MemoryStream FromString(MemoryStream stream, string value) {
+                var writer = new StreamWriter(stream);
+                writer.Write(value);
+                writer.Flush();
+                stream.Position = 0;
+                return stream;
+            }
+        }
+
         static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Введи патерн");
 
+            var str = Console.ReadLine();
 
-            var str = "1234567890";
+            var mems = MemoryStreamExtension.FromString(new MemoryStream(), str);
 
-            var mems = new MemoryStream();
-            var writer = new StreamWriter(mems);
+            var lex = new Lexer.Lexer(new SimpleParserInjector().Injection(), new LexerBuilder(new SimpleParserInjector()));
+            var tree = new AstTree.AstTree(lex.Parse(mems));
 
-            writer.Write(str);
-            writer.Flush();
-            mems.Position = 0;
+            Console.WriteLine("Вводи свои слова");
 
-            var reader = new StreamReader(mems);
-            reader.ReadToEnd();
-            Console.WriteLine(mems.Position);
-            Console.WriteLine(reader.Peek());
-            reader.DiscardBufferedData();
-            mems.Position = mems.Position - 2;
-            Console.WriteLine((char)reader.Peek());
+            var inp = Console.ReadLine();
+
+            do {
+                var stre = MemoryStreamExtension.FromString(new MemoryStream(), inp);
+                Console.WriteLine($"Результат проверки для \'{str}\': {tree.Check(stre)}");
+                inp = Console.ReadLine();
+            } while (inp != "DIE");
+
+            Console.WriteLine("Давай, дасведания");
 
             Console.ReadKey();
 
