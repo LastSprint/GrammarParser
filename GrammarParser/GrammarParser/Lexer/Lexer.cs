@@ -15,53 +15,20 @@ namespace GrammarParser.Lexer {
     /// Объет, который умеет разбирать поток символов в поток правил.
     /// То есть он умеет смтроить AST дерево по конкретной грамматике.
     /// </summary>
-    public class Lexer : ILexer {
-        private const char StartGroup = '(';
-        private const char EndGroup = ')';
-
-        private readonly IParser _parser;
-
-        private readonly IBuilder<ILexer, Stream> _selfBuilder;
+    public class Lexer: SingleRuleLexer {
 
         private DefaultParserContext _context;
 
-        public Lexer(IParser parser, IBuilder<ILexer, Stream> selfBuilder) {
-            this._parser = parser;
-            this._selfBuilder = selfBuilder;
-        }
+        public Lexer(IParser parser, IBuilder<ILexer, Stream> selfBuilder): base(parser, selfBuilder) { }
 
-        public IParserContext Parse(Stream stream) {
+        public new IParserContext Parse(Stream stream) {
             this._context = new DefaultParserContext(stream: stream);
             var symbol = stream.CurrentSymbol();
             while (symbol != null) {
-                switch (symbol) {
-                    case Lexer.EndGroup:
-                        return this._context;
-                    case null:
-                        return this._context;
-                    case Lexer.StartGroup:
-                        stream.TryToSeekToNext();
-                        var context = this._selfBuilder.Build(stream);
-                        var result = context.Parse(stream).ParsedRules.ToArray().Reverse();
-
-                        if (stream.CurrentSymbol() != Lexer.EndGroup) {
-                            throw new LexerBadGroupDeclarationException(this._context);
-                        }
-
-                        stream.TryToSeekToNext();
-
-                        var rule = new GroupRule(result.ToImmutableList());
-                        this._context.ParsedRules.Push(rule);
-                        break;
-                    default:
-                        if (this._parser.IsCurrentRule(this._context)) {
-                            this._context.ParsedRules.Push(this._parser.Parse(this._context));
-                            break;
-                        }
-                        throw new ArgumentOutOfRangeException(
-                            $"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this._context}");
-                }
-
+                base.ParseCurrentSymbol(symbol)
+                    .ParsedRules.Reverse()
+                    .ToList()
+                    .ForEach(x => this._context.ParsedRules.Push(x));
                 symbol = stream.CurrentSymbol();
             }
             return this._context;
