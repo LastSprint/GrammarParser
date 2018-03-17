@@ -159,7 +159,7 @@ namespace LexerUnitTests.LexerTests.Atomic {
 
             // Assert
 
-            Assert.ThrowsException<LexerBadGroupDeclarationException>(action);
+            Assert.ThrowsException<LexerBadEndGroupDeclarationException>(action);
         }
     }
 }

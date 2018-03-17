@@ -17,21 +17,44 @@ namespace GrammarParser.Lexer {
     /// </summary>
     public class Lexer: SingleRuleLexer {
 
-        private DefaultParserContext _context;
-
         public Lexer(IParser parser, IBuilder<ILexer, Stream> selfBuilder): base(parser, selfBuilder) { }
 
-        public new IParserContext Parse(Stream stream) {
-            this._context = new DefaultParserContext(stream: stream);
+        public override IParserContext Parse(Stream stream) {
+            base.Context = new DefaultParserContext(stream: stream);
             var symbol = stream.CurrentSymbol();
             while (symbol != null) {
-                base.ParseCurrentSymbol(symbol)
-                    .ParsedRules.Reverse()
-                    .ToList()
-                    .ForEach(x => this._context.ParsedRules.Push(x));
+
+                switch (symbol) {
+
+                    case SingleRuleLexer.EndGroup: return this.Context;
+                    case SingleRuleLexer.StartGroup:
+
+                        this.Context.CurrentStream.TryToSeekToNext();
+                        var context = this.SelfBuilder.Build(this.Context.CurrentStream);
+                        var result = context.Parse(this.Context.CurrentStream).ParsedRules.ToArray().Reverse();
+
+
+                        if (this.Context.CurrentStream.CurrentSymbol() != SingleRuleLexer.EndGroup)
+                        {
+                            throw new LexerBadEndGroupDeclarationException(this.Context);
+                        }
+
+                        this.Context.CurrentStream.TryToSeekToNext();
+
+                        var rule = new GroupRule(result.ToImmutableList());
+                        this.Context.ParsedRules.Push(rule);
+
+                        break;
+
+                    default:
+                        base.ParseCurrentSymbol(symbol);
+                        break;
+
+                }
+
                 symbol = stream.CurrentSymbol();
             }
-            return this._context;
+            return base.Context;
         }
     }
 }

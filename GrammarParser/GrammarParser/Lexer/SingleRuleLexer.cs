@@ -19,19 +19,19 @@ namespace GrammarParser.Lexer {
         protected const char StartGroup = '(';
         protected const char EndGroup = ')';
 
-        protected readonly IParser _parser;
+        protected readonly IParser Parser;
 
-        protected readonly IBuilder<ILexer, Stream> _selfBuilder;
+        protected readonly IBuilder<ILexer, Stream> SelfBuilder;
 
-        private DefaultParserContext _context;
+        protected DefaultParserContext Context;
 
         public SingleRuleLexer(IParser parser, IBuilder<ILexer, Stream> selfBuilder) {
-            this._parser = parser;
-            this._selfBuilder = selfBuilder;
+            this.Parser = parser;
+            this.SelfBuilder = selfBuilder;
         }
 
-        public IParserContext Parse(Stream stream) {
-            this._context = new DefaultParserContext(stream: stream);
+        public virtual IParserContext Parse(Stream stream) {
+            this.Context = new DefaultParserContext(stream: stream);
             var symbol = stream.CurrentSymbol();
             return this.ParseCurrentSymbol(symbol);
         }
@@ -39,35 +39,19 @@ namespace GrammarParser.Lexer {
         protected IParserContext ParseCurrentSymbol(char? symbol) {
 
             switch (symbol) {
-                case SingleRuleLexer.EndGroup:
-                    return this._context;
+               
                 case null:
-                    return this._context;
-                case SingleRuleLexer.StartGroup:
-                    this._context.CurrentStream.TryToSeekToNext();
-                    var context = this._selfBuilder.Build(this._context.CurrentStream);
-                    var result = context.Parse(this._context.CurrentStream).ParsedRules.ToArray().Reverse();
-
-                    if (this._context.CurrentStream.CurrentSymbol() != SingleRuleLexer.EndGroup) {
-                        throw new LexerBadGroupDeclarationException(this._context);
-                    }
-
-                    this._context.CurrentStream.TryToSeekToNext();
-
-                    var rule = new GroupRule(result.ToImmutableList());
-                    this._context.ParsedRules.Push(rule);
-
-                    return this._context;
+                    return this.Context;
 
                 default:
 
-                    if (this._parser.IsCurrentRule(this._context)) {
-                        this._context.ParsedRules.Push(this._parser.Parse(this._context));
-                        return this._context;
+                    if (this.Parser.IsCurrentRule(this.Context)) {
+                        this.Context.ParsedRules.Push(this.Parser.Parse(this.Context));
+                        return this.Context;
                     }
 
                     throw new ArgumentOutOfRangeException(
-                        $"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this._context}");
+                        $"{symbol} не разобран ни одним из существующих правил.{Environment.NewLine}Контекст: {this.Context}");
             }
         }
     }
