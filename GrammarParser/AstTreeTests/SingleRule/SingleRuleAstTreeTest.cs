@@ -7,8 +7,6 @@ using GrammarParser.Lexer;
 
 using GrammarParserUnitTests.Utils;
 
-using LexerUnitTests.LexerTests.Atomic.SingleRule;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AstTreeTests.SingleRule {

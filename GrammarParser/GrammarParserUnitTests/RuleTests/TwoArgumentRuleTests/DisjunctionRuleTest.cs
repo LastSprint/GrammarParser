@@ -65,7 +65,7 @@ namespace GrammarParserUnitTests.RuleTests.TwoArgumentRuleTests {
             // Act
 
             var isCheked =
-                new RangeRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
+                new DisjunctionRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
 
 
             // Assert
@@ -90,7 +90,7 @@ namespace GrammarParserUnitTests.RuleTests.TwoArgumentRuleTests {
             // Act
 
             var isCheked =
-                new RangeRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
+                new DisjunctionRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
 
 
             // Assert
@@ -117,7 +117,7 @@ namespace GrammarParserUnitTests.RuleTests.TwoArgumentRuleTests {
             // Act
 
             var isCheked =
-                new RangeRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
+                new DisjunctionRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
 
 
             // Assert
@@ -137,13 +137,13 @@ namespace GrammarParserUnitTests.RuleTests.TwoArgumentRuleTests {
             var firstSymbolRule = new SymbolRule(symbol1);
             var secondSymbolRule = new SymbolRule(symbol2);
 
-            var stream = new MemoryStream().FromString($"b{addition}");
+            var stream = new MemoryStream().FromString($"{symbol1}{addition}");
 
             // Act
 
             var streamStartPosition = stream.Position;
 
-            new RangeRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
+            new DisjunctionRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
 
 
             // Assert
@@ -169,7 +169,7 @@ namespace GrammarParserUnitTests.RuleTests.TwoArgumentRuleTests {
 
             var streamStartPosition = stream.Position;
 
-            new RangeRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
+            new DisjunctionRule(leftArgumentRule: firstSymbolRule, rightArgumentRule: secondSymbolRule).Check(stream);
 
 
             // Assert

@@ -55,8 +55,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             var symbol1 = 'a';
             var symbol2 = 'c';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}\'{symbol2}\'");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}\'{symbol2}\'");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
             var leftArgument = new SymbolRule(symbol1);
@@ -70,8 +70,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             // Assert
 
-            Assert.IsInstanceOfType(parsed, typeof(RangeRule));
-            var converted = (RangeRule)parsed;
+            Assert.IsInstanceOfType(parsed, typeof(DisjunctionRule));
+            var converted = (DisjunctionRule)parsed;
             Assert.IsNotNull(converted.LeftArgumentRule);
             Assert.IsNotNull(converted.RightArgumentRule);
 
@@ -93,8 +93,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             var symbol1 = 'a';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
             var leftArgument = new SymbolRule(symbol1);
@@ -119,8 +119,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             var symbol1 = 'a';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
             var leftArgument = new SymbolRule(symbol1);
@@ -145,8 +145,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             var symbol1 = 'a';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}\'{symbol1}\'");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}\'{symbol1}\'");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
 
@@ -169,8 +169,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             var symbol1 = 'a';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}\'{symbol1}\'");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}\'{symbol1}\'");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
 
@@ -191,8 +191,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
 
@@ -213,8 +213,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             // Arrange
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
 
@@ -227,6 +227,34 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             // Assert
 
             Assert.ThrowsException<RuleParserNotExistedLeftArgumentException>(action);
+        }
+
+        [TestMethod]
+        public void TestThatSuccessParsingGroup() {
+
+            // Arrange
+
+            var symbol1 = 'a';
+            var symbol2 = 'b';
+
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}(\'{symbol2}\'\'{symbol2}\')");
+            var parser = new DisjunctionRuleParser();
+
+            var context = new DefaultParserContext(stream: stream);
+            var leftArgument = new SymbolRule(symbol1);
+
+            context.ParsedRules.Push(leftArgument);
+
+
+            context.LexerBuilder = new LexerBuilder(new SimpleParserInjector());
+
+            // Act
+
+            var canParsed = parser.IsCurrentRule(context);
+
+            // Assert
+
+            Assert.IsTrue(canParsed);
         }
 
         #endregion
@@ -243,10 +271,10 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             var symbol2 = 'c';
 
             var additionRule = $"\'{symbol2}\'";
-            var str = $"{RangeRuleParser.Symbol}\'{symbol2}\'{additionRule}";
+            var str = $"{DisjunctionRuleParser.Symbol}\'{symbol2}\'{additionRule}";
 
             var stream = new MemoryStream().FromString(str);
-            var parser = new RangeRuleParser();
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
             var leftArgument = new SymbolRule(symbol1);
