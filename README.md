@@ -17,30 +17,39 @@
 #### Примеры
 
 - '**s**':
-  'a' <- b = false
-  'a' <- a = true
+
+   'a' <- b = false  
+   'a' <- a = true
+  
 - **r**?:
-  'a'? <- b = true
-  'a'? <- a = true
-  'a'? <- = true
+
+   'a'? <- b = true  
+   'a'? <- a = true  
+   'a'? <- = true
+  
 - **r**\*:
-  'a'* <- b = true
-  'a'* <- a = true
-  'a'* <- aaaaaaaaaaaaaa = true
-  'a'* <- = true
+
+   'a'* <- b = true  
+   'a'* <- a = true  
+   'a'* <- aaaaaaaaaaaaaa = true  
+   'a'* <- = true
+  
 - **r**+:
-  'a'+ <- b = false
-  'a'+ <- a = true
-  'a'+ <- aaaaaaaaaaaaaa = true
-  'a'+ <- = false
+
+   'a'+ <- b = false  
+   'a'+ <- a = true  
+   'a'+ <- aaaaaaaaaaaaaa = true  
+   'a'+ <- = false
   
 - '**s1**'..'**s2**':
-  'a'..'c' <- d = false
-  'a'..'c' <- b = true
-  'a'..'c' <- a = true
-  'a'..'c' <- c = true
+
+   'a'..'c' <- d = false  
+   'a'..'c' <- b = true  
+   'a'..'c' <- a = true  
+   'a'..'c' <- c = true
   
 - **r**|**r**:
-  'a'|'b' <- c = false
-  'a'|'b' <- b = true
-  'a'|'b' <- a = true
+
+   'a'|'b' <- c = false  
+   'a'|'b' <- b = true  
+   'a'|'b' <- a = true
