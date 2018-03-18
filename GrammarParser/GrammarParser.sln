@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrammarParser", "GrammarPar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrammarParserUnitTests", "GrammarParserUnitTests\GrammarParserUnitTests.csproj", "{7EBF0657-9D7A-438E-8CDD-DAE3592DC658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexerUnitTests", "LexerUnitTests\LexerUnitTests.csproj", "{F919605E-F760-4386-8E61-A826D7162C6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LexerUnitTests", "LexerUnitTests\LexerUnitTests.csproj", "{F919605E-F760-4386-8E61-A826D7162C6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstTreeTests", "AstTreeTests\AstTreeTests.csproj", "{ABEF7428-693C-4B7E-8D41-F004442D1518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstTreeTests", "AstTreeTests\AstTreeTests.csproj", "{ABEF7428-693C-4B7E-8D41-F004442D1518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrucutreParserTests", "StrucutreParserTests\StrucutreParserTests.csproj", "{7E8ACFCE-ED76-44FE-93DF-327141442F04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{ABEF7428-693C-4B7E-8D41-F004442D1518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABEF7428-693C-4B7E-8D41-F004442D1518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABEF7428-693C-4B7E-8D41-F004442D1518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8ACFCE-ED76-44FE-93DF-327141442F04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8ACFCE-ED76-44FE-93DF-327141442F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8ACFCE-ED76-44FE-93DF-327141442F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8ACFCE-ED76-44FE-93DF-327141442F04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

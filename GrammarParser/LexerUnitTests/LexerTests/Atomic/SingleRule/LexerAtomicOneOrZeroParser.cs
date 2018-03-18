@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 
 using GrammarParser.Lexer;
-using GrammarParser.Lexer.Configurations;
 using GrammarParser.Lexer.Injections;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Library;
-
+using GrammarParser.RuleLexer;
+using GrammarParser.RuleLexer.Configurations;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

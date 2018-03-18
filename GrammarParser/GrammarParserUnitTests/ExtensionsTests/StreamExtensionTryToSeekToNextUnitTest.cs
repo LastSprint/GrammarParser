@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using GrammarParser.Library.Extensions;
-using GrammarParserUnitTests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GrammarParserUnitTests.ExtensionsTests {

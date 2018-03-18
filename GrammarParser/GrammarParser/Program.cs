@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
-using GrammarParser.Lexer.Configurations;
+
 using GrammarParser.Lexer.Injections.Injectors;
+using GrammarParser.RuleLexer.Configurations;
 
 namespace GrammarParser {
 
@@ -25,7 +26,7 @@ namespace GrammarParser {
 
             var mems = MemoryStreamExtension.FromString(new MemoryStream(), str);
 
-            var lex = new Lexer.Lexer(new SimpleParserInjector().Injection(), new LexerBuilder(new SimpleParserInjector()));
+            var lex = new RuleLexer.Lexer(new SimpleParserInjector().Injection(), new LexerBuilder(new SimpleParserInjector()));
             var tree = new AstTree.AstTree(lex.Parse(mems));
 
             Console.WriteLine("Вводи свои слова");

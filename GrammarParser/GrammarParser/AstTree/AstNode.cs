@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.AstTree.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.AstTree {

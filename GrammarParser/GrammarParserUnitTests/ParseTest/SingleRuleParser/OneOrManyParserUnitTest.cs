@@ -1,4 +1,5 @@
 ﻿using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

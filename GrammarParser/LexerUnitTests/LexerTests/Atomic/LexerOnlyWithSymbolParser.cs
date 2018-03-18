@@ -4,14 +4,16 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.Lexer;
-using GrammarParser.Lexer.Configurations;
-using GrammarParser.Lexer.Exceptions;
 using GrammarParser.Lexer.Injections;
-using GrammarParser.Lexer.Injections.Injectors.Atomic;
 using GrammarParser.Lexer.Parser.Classes;
+using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Lexer.Rules.Classes;
+using GrammarParser.Library.Extensions;
+using GrammarParser.RuleLexer;
+using GrammarParser.RuleLexer.Configurations;
+using GrammarParser.RuleLexer.Exceptions;
+using GrammarParser.RuleLexer.Injections.Injectors.Atomic;
 
-using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

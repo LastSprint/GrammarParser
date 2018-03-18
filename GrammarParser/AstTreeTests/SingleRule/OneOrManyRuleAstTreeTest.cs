@@ -4,8 +4,9 @@ using System.Linq;
 
 using GrammarParser.AstTree;
 using GrammarParser.Lexer;
+using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Library.Extensions;
 
-using GrammarParserUnitTests.Utils;
 
 using LexerUnitTests.LexerTests.Atomic.SingleRule;
 

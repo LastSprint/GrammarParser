@@ -3,7 +3,6 @@ using System.IO;
 
 using GrammarParser.Library.Extensions;
 
-using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -106,6 +105,45 @@ namespace LexerUnitTests.ExtensionsTests {
             // Assert
 
             Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void TestThatPeekMakeOffset() {
+            // Arrange
+
+            var ch1 = '1';
+            var ch2 = '2';
+
+            var stream = new MemoryStream().FromString(value: $"{ch1}{ch2}");
+
+            // Act
+            var result = stream.Peek();
+
+            // Assert
+
+            Assert.AreEqual(ch2, result);
+        }
+
+        [TestMethod]
+        public void TestThatPeekMakeSuccessOffset() {
+            // Arrange
+
+            var ch1 = '1';
+            var ch2 = '2';
+
+            var stream = new MemoryStream().FromString(value: $"{ch1}{ch2}");
+
+            // Act
+
+            var startPos = stream.Position;
+
+            var result = stream.Peek();
+
+            var endPos = stream.Position;
+
+            // Assert
+
+            Assert.AreEqual(startPos + 1, endPos);
         }
 
     }

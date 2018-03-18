@@ -4,8 +4,8 @@ using System.Linq;
 
 using GrammarParser.AstTree;
 using GrammarParser.Lexer;
-
-using GrammarParserUnitTests.Utils;
+using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Library.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

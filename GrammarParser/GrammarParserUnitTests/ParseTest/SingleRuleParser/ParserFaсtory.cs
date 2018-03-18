@@ -1,6 +1,8 @@
 ﻿using GrammarParser.Lexer.Parser.Classes.RuleParsers;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
+using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 
 namespace GrammarParserUnitTests.ParseTest.SingleRuleParser {
 

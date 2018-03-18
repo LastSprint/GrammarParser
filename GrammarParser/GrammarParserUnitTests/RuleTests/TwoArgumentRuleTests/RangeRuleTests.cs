@@ -1,11 +1,10 @@
 ﻿using System.IO;
 
+using GrammarParser.Lexer.RuleLexer.Rules.Other;
 using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Rules.Classes.TwoArgumentRules;
-using GrammarParser.Lexer.Types.Other;
 using GrammarParser.Library.Extensions;
 
-using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

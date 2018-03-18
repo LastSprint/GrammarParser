@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.Lexer;
-using GrammarParser.Lexer.Exceptions;
+using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
+using GrammarParser.Library.Extensions;
+using GrammarParser.RuleLexer.Exceptions;
 
-using GrammarParserUnitTests.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

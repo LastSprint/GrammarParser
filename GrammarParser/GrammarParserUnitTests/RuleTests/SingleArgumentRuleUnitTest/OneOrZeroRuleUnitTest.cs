@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
+using GrammarParser.Lexer.RuleLexer.Rules.Other;
 using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
-using GrammarParser.Lexer.Types.Other;
-
-using GrammarParserUnitTests.Utils;
+using GrammarParser.Library.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -35,7 +34,7 @@ namespace GrammarParserUnitTests.RuleTests.SingleArgumentRuleUnitTest {
             var symbol = 'd';
             var argumentRule = new SymbolRule(symbol: symbol);
             var rule = new OneOrZeroRule(argument: argumentRule);
-            var stream = new MemoryStream().FromChar((char)(symbol + 1));
+            var stream = new MemoryStream().FromString((symbol + 1).ToString());
 
             //act
 
@@ -53,7 +52,7 @@ namespace GrammarParserUnitTests.RuleTests.SingleArgumentRuleUnitTest {
             var symbol = 'd';
             var argumentRule = new SymbolRule(symbol: symbol);
             var rule = new OneOrZeroRule(argument: argumentRule);
-            var stream = new MemoryStream().FromChar(symbol);
+            var stream = new MemoryStream().FromString(symbol.ToString());
 
             //act
 

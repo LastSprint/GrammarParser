@@ -2,8 +2,6 @@
 
 using GrammarParser.Library.Extensions;
 
-using GrammarParserUnitTests.Utils;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GrammarParserUnitTests.ExtensionsTests {

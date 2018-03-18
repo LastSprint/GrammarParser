@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+
+using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
+using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Other;
 using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Lexer.Rules.Interfaces;
-using GrammarParser.Lexer.Types.Other;
-using GrammarParserUnitTests.Utils;
+using GrammarParser.Library.Extensions;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GrammarParserUnitTests.RuleTests {
@@ -34,7 +38,7 @@ namespace GrammarParserUnitTests.RuleTests {
 
             var symbol = 'd';
             var rule = new GroupRule(new List<IRule> { new SymbolRule(symbol: symbol) });
-            var stream = new MemoryStream().FromChar((char)(symbol + 1));
+            var stream = new MemoryStream().FromString((symbol + 1).ToString());
 
             //act
 
