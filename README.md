@@ -1,6 +1,50 @@
 ![Travis CI](https://travis-ci.org/LastSprint/GrammarParser.svg?branch=master)
 # GrammarParser
 
+## Структура лексера
+
+Файл, содержащий специйикаацию для парсера имеют определенную структуру.
+Структурные элементы (Блоки) определяются следующимобразом:
+
+```
+block BLOCK_NAME {
+...
+}
+```
+
+Внутри блока описывается что-то по правилам этого самого блокаю.
+
+### Aliases
+
+Набор токенов, которыми можно заменить сложные правила в лексере.
+Блок имеет следующдий синтаксис:
+
+```
+block Aliases {
+   key1: value
+   key2: value
+   ...
+}
+```
+
+В дальшнейшем `key` можно использовтаь в лексере.
+
+Пример:
+```
+block Aliases {
+   CharacterAlias = ('a'..'z')|('A'..'Z')
+   StringAlias = AnyCharacter+
+   AnyDigitAlias = ('0'..'9')
+   AnyIntegerAlias = AnyDigit+
+   ...
+}
+
+...
+
+StringAlias|AnyIntegerAlias
+
+```
+
 ## Правила лексера:
 ### Обозначения:
 **r** - любое правило.
