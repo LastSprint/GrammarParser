@@ -6,6 +6,6 @@ namespace GrammarParser.Lexer.Rules.Classes.TwoArgumentRules {
 
         IRule RightArgumentRule { get; }
 
-        IRule LeftArgumentRule { get;  }
+        IRule LeftArgumentRule { get; }
     }
 }

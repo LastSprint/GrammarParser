@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
     [TestClass]
-    public class RangeRuleParserUnitTest {
+    public class DisjunctionRuleParserUnitTest {
 
         #region Easy cases
 
@@ -28,8 +28,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             var symbol1 = 'a';
             var symbol2 = 'c';
 
-            var stream = new MemoryStream().FromString($"{RangeRuleParser.Symbol}\'{symbol2}\'");
-            var parser = new RangeRuleParser();
+            var stream = new MemoryStream().FromString($"{DisjunctionRuleParser.Symbol}\'{symbol2}\'");
+            var parser = new DisjunctionRuleParser();
 
             var context = new DefaultParserContext(stream: stream);
             var leftArgument = new SymbolRule(symbol1);
@@ -47,7 +47,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatSuccessParsing() {
+        public void TestThatSuccessParsing()
+        {
 
             // Arrange
 
@@ -70,7 +71,7 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             // Assert
 
             Assert.IsInstanceOfType(parsed, typeof(RangeRule));
-            var converted = (RangeRule) parsed;
+            var converted = (RangeRule)parsed;
             Assert.IsNotNull(converted.LeftArgumentRule);
             Assert.IsNotNull(converted.RightArgumentRule);
 
@@ -86,7 +87,7 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedChekingWithoutLastSymbol(){
+        public void TestThatFailedChekingWithoutLastSymbol() {
 
             // Arrange
 
@@ -111,7 +112,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedParsingWithoutLastSymbol() {
+        public void TestThatFailedParsingWithoutLastSymbol()
+        {
 
             // Arrange
 
@@ -128,7 +130,7 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
             // Act
 
-            var action = new Action(() => parser.Parse(context) );
+            var action = new Action(() => parser.Parse(context));
 
             // Assert
 
@@ -136,7 +138,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedChekingWithoutFirstSymbol() {
+        public void TestThatFailedChekingWithoutFirstSymbol()
+        {
 
             // Arrange
 
@@ -159,7 +162,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedParsingWithoutFirstSymbol() {
+        public void TestThatFailedParsingWithoutFirstSymbol()
+        {
 
             // Arrange
 
@@ -182,7 +186,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedChekingWithoutArguments() {
+        public void TestThatFailedChekingWithoutArguments()
+        {
 
             // Arrange
 
@@ -203,7 +208,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         }
 
         [TestMethod]
-        public void TestThatFailedParsingWithoutArguments() {
+        public void TestThatFailedParsingWithoutArguments()
+        {
 
             // Arrange
 
@@ -228,7 +234,8 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
         #region Test side-effects
 
         [TestMethod]
-        public void TestThatAfterSuccessParsingStreamCursorHasRightPosition() {
+        public void TestThatAfterSuccessParsingStreamCursorHasRightPosition()
+        {
 
             // Arrange
 
@@ -260,3 +267,4 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
 
     }
 }
+

@@ -3,9 +3,7 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 
-using GrammarParser.Lexer.Configurations;
 using GrammarParser.Lexer.Exceptions;
-using GrammarParser.Lexer.Injections.Injectors;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.Rules.Classes;
