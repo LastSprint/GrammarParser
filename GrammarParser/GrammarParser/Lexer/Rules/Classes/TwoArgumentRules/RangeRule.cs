@@ -28,11 +28,10 @@ namespace GrammarParser.Lexer.Rules.Classes.TwoArgumentRules {
             var startPosition = stream.Position;
             var reader = new StreamReader(stream);
             var readed = reader.Read();
-            var result = readed >= this._rightSymbolRule.Symbol && readed <= this._leftSymbolRule.Symbol;
+            var result = readed >= this._leftSymbolRule.Symbol && readed <= this._rightSymbolRule.Symbol;
             reader.DiscardBufferedData();
             stream.Position = result ? startPosition + 1 : startPosition;
             return result;
-
         }
     }
 }

@@ -256,9 +256,7 @@ namespace GrammarParserUnitTests.ParseTest.TwoArgumentRuleParsers {
             Assert.AreEqual(str.Length - additionRule.Length, context.CurrentStream.Position);
         }
 
-
-
-    #endregion
+        #endregion
 
     }
 }
