@@ -20,7 +20,7 @@ block BLOCK_NAME {
 
 ```
 block Rules {
-   ruleName: rule -> Name: rule
+   ruleName: rule -> Name: rule;
    ...
 }
 ```
@@ -33,7 +33,7 @@ block Rules {
 
 ```
 block Rules {
-   words: 'a'..'z'+' '+'a'..'z'+ -> Name: "Node name", FirstWord: 1, SecondWord: 3 
+   words: 'a'..'z'+' '+'a'..'z'+ -> Name: "Node name", FirstWord: 1, SecondWord: 3;
    ...
 }
 ```
