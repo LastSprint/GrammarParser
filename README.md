@@ -42,7 +42,7 @@ block Rules {
 
 Если этому правилу передать строку: `abc def`
 
-'''JSON
+```JSON
 
 {
    "name": "Node name",
