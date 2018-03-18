@@ -12,6 +12,6 @@ namespace GrammarParser.Lexer.Injections.Injectors.Atomic {
     /// </summary>
     public class TwoArgumentParserIinjector: IInjector<IParser> {
 
-        public IParser Injection() => new ParserAgregator(new List<IParser> { new RangeRuleParser() });
+        public IParser Injection() => new ParserAgregator(new List<IParser> { new RangeRuleParser(), new DisjunctionRuleParser() });
     }
 }
