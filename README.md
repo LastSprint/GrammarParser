@@ -51,12 +51,12 @@ block Rules {
       {
          "name": "FirstWord",
          "value": "abc",
-         "childs" null,
+         "childs" null
       },
       {
          "name": "SecondWord",
          "value": "def",
-         "childs" null,
+         "childs" null
       }
    ]
 }
