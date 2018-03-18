@@ -17,7 +17,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
 
         public abstract IRule Parse(IParserImmutableContext context);
 
-        protected IRule TryParse(IParserImmutableContext context) {
+        protected virtual IRule TryParse(IParserImmutableContext context) {
 
             var (argument, symbol) = this.ProcessContext(context: context);
 
@@ -30,7 +30,7 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
                     ruleSymbol: $"{this.TerminateSymbol}");
             }
 
-            context.CurrentStream.Position += 1;
+            context.CurrentStream.Position += this.TerminateSymbol.Length;
             context.Pop();
             return argument;
         }
@@ -43,8 +43,6 @@ namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParse
             for (var i = 0; i < this.TerminateSymbol.Length; i++) {
                 terminateSequence += (char)reader.Read();
             }
-
-
 
             reader.DiscardBufferedData();
             context.CurrentStream.Position = startStreamPosition;

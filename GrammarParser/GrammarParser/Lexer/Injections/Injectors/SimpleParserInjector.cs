@@ -10,8 +10,14 @@ namespace GrammarParser.Lexer.Injections.Injectors {
     /// Агрегирует все простые парсеры:
     /// <see cref="SingleArgumentParserInjector"/>
     /// <see cref="SymbolParserInjector"/>
+    /// <see cref="TwoArgumentParserIinjector"/>
     /// </summary>
     public class SimpleParserInjector: IInjector<IParser> {
-        public IParser Injection() => new ParserAgregator( new List<IParser> { new SingleArgumentParserInjector().Injection(), new SymbolParserInjector().Injection()});
+
+        public IParser Injection() => new ParserAgregator( new List<IParser> {
+            new SingleArgumentParserInjector().Injection(),
+            new SymbolParserInjector().Injection(),
+            new TwoArgumentParserIinjector().Injection() 
+        });
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using GrammarParser.Lexer.Rules.Interfaces;
+using GrammarParser.Library;
 
 namespace GrammarParser.Lexer.Parser.Interfaces {
 
@@ -10,6 +10,8 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
     /// Неизменяемый.
     /// </summary>
     public interface IParserImmutableContext {
+
+        IBuilder<ILexer, Stream> LexerBuilder { get; }
 
         /// <summary>
         /// Незименяемая коллекция уже разобранных правил.
