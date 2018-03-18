@@ -28,9 +28,9 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         /// <summary>
         /// Вызывает парсинг соответствующего аргумента.
         /// </summary>
-        /// <param name="conext">Контекст, парсера-предка.</param>
+        /// <param name="context">Контекст, парсера-предка.</param>
         /// <returns>Правило</returns>
-        IRule Parse(IParserImmutableContext conext);
+        IRule Parse(IParserImmutableContext context);
     }
 
 }

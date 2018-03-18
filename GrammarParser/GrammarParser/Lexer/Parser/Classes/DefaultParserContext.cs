@@ -4,10 +4,13 @@ using System.IO;
 
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.Rules.Interfaces;
+using GrammarParser.Library;
 
 namespace GrammarParser.Lexer.Parser.Classes {
 
     public class DefaultParserContext: IParserContext {
+
+        public IBuilder<ILexer, Stream> LexerBuilder { get; set; }
 
         public IReadOnlyCollection<IRule> CurrentRuleCollection => this.ParsedRules;
         public Stack<IRule> ParsedRules { get; set; }

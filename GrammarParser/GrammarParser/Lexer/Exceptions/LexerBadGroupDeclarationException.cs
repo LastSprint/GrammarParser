@@ -3,12 +3,24 @@ using GrammarParser.Lexer.Parser.Interfaces;
 
 namespace GrammarParser.Lexer.Exceptions {
 
-    public class LexerBadGroupDeclarationException: Exception {
+    public class LexerBadEndGroupDeclarationException: Exception {
         private readonly IParserImmutableContext _context;
 
-        public override string Message => $"Не удалось найти конец дкларации группы" +
+        public override string Message => "Не удалось найти конец декларации группы" +
                                           $"{Environment.NewLine}Контекст: {this._context}";
 
-        public LexerBadGroupDeclarationException(IParserImmutableContext context) => this._context = context;
+        public LexerBadEndGroupDeclarationException(IParserImmutableContext context) => this._context = context;
     }
+
+    public class LexerBadStartGroupFeclarationException : Exception {
+
+        private readonly IParserImmutableContext _context;
+
+        public override string Message => "Не удалось найти начало декларации группы" +
+                                          $"{Environment.NewLine}Контекст: {this._context}";
+
+        public LexerBadStartGroupFeclarationException(IParserImmutableContext context) => this._context = context;
+
+    }
+
 }

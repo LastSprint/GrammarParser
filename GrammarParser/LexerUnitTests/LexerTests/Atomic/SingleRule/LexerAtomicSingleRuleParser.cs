@@ -145,7 +145,7 @@ namespace LexerUnitTests.LexerTests.Atomic.SingleRule {
 
             // Assert
 
-            Assert.ThrowsException<LexerBadGroupDeclarationException>(action);
+            Assert.ThrowsException<LexerBadEndGroupDeclarationException>(action);
         }
     }
 }

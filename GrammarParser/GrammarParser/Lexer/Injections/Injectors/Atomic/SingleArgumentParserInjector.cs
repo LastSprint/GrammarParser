@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-using GrammarParser.Lexer.Parser.Classes.RuleParsers;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers.SingleArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Library;
