@@ -8,11 +8,10 @@ using System.IO;
 using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-namespace GrammarParser.Lexer.Parser.Classes {
+namespace GrammarParser.Lexer.RuleLexer.Parser.Classes {
 
     /// <summary>
     ///     Пытается получить лексему символа: '?'
@@ -76,7 +75,5 @@ namespace GrammarParser.Lexer.Parser.Classes {
 
             return new SymbolRule(symbol);
         }
-
     }
-
 }

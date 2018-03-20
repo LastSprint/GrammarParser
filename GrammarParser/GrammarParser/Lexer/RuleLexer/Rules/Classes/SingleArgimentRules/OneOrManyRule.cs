@@ -1,13 +1,13 @@
 ﻿using System.IO;
+using System.Text;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
 
-using ISingleArgumentRule = GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules.ISingleArgumentRule;
 
 namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules {
 
-    public class OneOrManyRule : ISingleArgumentRule {
+    public class OneOrManyRule: ISingleArgumentRule {
 
         public OneOrManyRule(IRule argument) => this.ArgumentRule = argument;
 
@@ -15,13 +15,21 @@ namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules {
 
         public RulePriority Priority => RulePriority.RuleOneOrMany;
 
+        public string ChekedString { get; private set; }
+
         public bool Check(Stream stream) {
             if (!this.ArgumentRule.Check(stream)) {
-                // Правило не выполнилось - все норм
+                // Правило не выполнилось - беда
                 return false;
             }
 
-            while (this.ArgumentRule.Check(stream)) { }
+            var builder = new StringBuilder(this.ArgumentRule.ChekedString);
+
+            while (this.ArgumentRule.Check(stream)) {
+                builder.Append(this.ArgumentRule.ChekedString);
+            }
+
+            this.ChekedString = builder.ToString();
 
             return true;
         }

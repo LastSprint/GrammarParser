@@ -3,6 +3,7 @@
 using GrammarParser.Lexer.Injections;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Library;
 

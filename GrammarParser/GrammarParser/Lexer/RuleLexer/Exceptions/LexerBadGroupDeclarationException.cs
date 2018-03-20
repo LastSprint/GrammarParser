@@ -2,7 +2,7 @@
 
 using GrammarParser.Lexer.Parser.Interfaces;
 
-namespace GrammarParser.RuleLexer.Exceptions {
+namespace GrammarParser.Lexer.RuleLexer.Exceptions {
 
     public class LexerBadEndGroupDeclarationException : Exception {
 

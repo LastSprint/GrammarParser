@@ -15,8 +15,8 @@ namespace AstTreeTests.SingleRule {
 
     [TestClass]
     public class ZeroOrManyRuleAstTreeTest: SingleRuleAstTreeTest {
-        public override ILexer Lexer => new LexerAtomicZeroOrManyParser().Lexer;
-        public override char Symbol => new LexerAtomicZeroOrManyParser().Symbol;
+        public override ILexer Lexer => new LexerAtomicZeroOrManyParserTests().Lexer;
+        public override char Symbol => new LexerAtomicZeroOrManyParserTests().Symbol;
 
         [TestMethod]
         public void TestThatLexerGenerateRightTreeFromOneSymbolAndCheckSuccessedWithEmptyString() {

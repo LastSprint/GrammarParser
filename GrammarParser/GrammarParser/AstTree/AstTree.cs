@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -39,5 +40,27 @@ namespace GrammarParser.AstTree {
 
             this.Root = currentNode;
         }
+
+        /// <summary>
+        /// Производит обход в глубину по дереву, если корень дерева null, то обход не осуществляется
+        /// </summary>
+        /// <param name="action">Получает каждый сдежующий узел дерева</param>
+        public void DeepWalk(Action<IAstNode> action) {
+
+            if (this.Root == null) {
+                return;
+            }
+
+            this.ReqursiveDeepWalk(action, this.Root);
+        }
+
+        private void ReqursiveDeepWalk(Action<IAstNode> action, IAstNode node) {
+            action(node);
+
+            foreach (var nodeChild in node.Childs) {
+                this.ReqursiveDeepWalk(action, nodeChild);
+            }
+        }
+
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 
+using GrammarParser.Lexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.TwoArgumentRules;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers {
+namespace GrammarParser.Lexer.RuleLexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers {
 
     public class RangeRuleParser : TwoArgumentRuleParser {
 

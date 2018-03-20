@@ -15,8 +15,8 @@ namespace AstTreeTests.SingleRule {
 
     [TestClass]
     public class OneOrZeroRuleAstTreeTest{
-        public ILexer Lexer => new LexerAtomicOneOrZeroParser().Lexer;
-        public char Symbol => new LexerAtomicOneOrZeroParser().Symbol;
+        public ILexer Lexer => new LexerAtomicOneOrZeroParserTests().Lexer;
+        public char Symbol => new LexerAtomicOneOrZeroParserTests().Symbol;
 
 
         [TestMethod]

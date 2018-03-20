@@ -1,12 +1,10 @@
 ﻿using System.IO;
+using System.Text;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-using ISingleArgumentRule = GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules.ISingleArgumentRule;
-
-namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
+namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules {
 
     /// <summary>
     ///     Вложенное правило выполняется либо один раз либо не выполняется
@@ -19,16 +17,21 @@ namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
 
         public RulePriority Priority => RulePriority.RuleZeroOrOne;
 
+        public string ChekedString { get; private set; }
+
         public bool Check(Stream stream) {
             var streamStartPosition = stream.Position;
-
+            
             if (!this.ArgumentRule.Check(stream)) {
                 // Правило не выполнилось - все норм
+                this.ChekedString = "";
                 return true;
             }
-
+            var builder = new StringBuilder(this.ArgumentRule.ChekedString);
             if (!this.ArgumentRule.Check(stream)) {
                 // Правило отработало только один раз - все норм
+                builder.Append(this.ArgumentRule.ChekedString);
+                this.ChekedString = builder.ToString();
                 return true;
             }
 

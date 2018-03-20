@@ -3,19 +3,16 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 
-using GrammarParser.Lexer;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Lexer.RuleLexer.Exceptions;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Interfaces;
 using GrammarParser.Library;
 using GrammarParser.Library.Extensions;
-using GrammarParser.RuleLexer.Exceptions;
 
-namespace GrammarParser.RuleLexer {
+namespace GrammarParser.Lexer.RuleLexer {
 
     /// <summary>
     ///     Объет, который умеет разбирать поток символов в поток правил.

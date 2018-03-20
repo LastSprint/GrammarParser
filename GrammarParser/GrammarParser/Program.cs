@@ -2,7 +2,7 @@
 using System.IO;
 
 using GrammarParser.Lexer.Injections.Injectors;
-using GrammarParser.RuleLexer.Configurations;
+using GrammarParser.Lexer.RuleLexer.Configurations;
 
 namespace GrammarParser {
 
@@ -26,7 +26,7 @@ namespace GrammarParser {
 
             var mems = MemoryStreamExtension.FromString(new MemoryStream(), str);
 
-            var lex = new RuleLexer.Lexer(new SimpleParserInjector().Injection(), new LexerBuilder(new SimpleParserInjector()));
+            var lex = new Lexer.RuleLexer.Lexer(new SimpleParserInjector().Injection(), new LexerBuilder(new SimpleParserInjector()));
             var tree = new AstTree.AstTree(lex.Parse(mems));
 
             Console.WriteLine("Вводи свои слова");
@@ -36,6 +36,10 @@ namespace GrammarParser {
             do {
                 var stre = MemoryStreamExtension.FromString(new MemoryStream(), inp);
                 Console.WriteLine($"Результат проверки для \'{str}\': {tree.Check(stre)}");
+                Console.WriteLine("ЩА ПОКАЖУ ДЕРЕВО!");
+                Console.WriteLine();
+                Console.WriteLine();
+                tree.DeepWalk(x=>Console.WriteLine($"{x.ParsedResult}"));
                 inp = Console.ReadLine();
             } while (inp != "DIE");
 

@@ -4,7 +4,6 @@ using GrammarParser.Lexer.Parser.Exceptions;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
-using GrammarParser.Lexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Lexer.Rules.Interfaces;
 
 namespace GrammarParser.Lexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers {

@@ -4,9 +4,8 @@ using System.IO;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers;
 using GrammarParser.Lexer.Parser.Exceptions;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Library.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;

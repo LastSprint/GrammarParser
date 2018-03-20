@@ -9,6 +9,7 @@ using System.IO;
 
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Exceptions;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.Rules.Interfaces;
 using GrammarParser.Library.Extensions;

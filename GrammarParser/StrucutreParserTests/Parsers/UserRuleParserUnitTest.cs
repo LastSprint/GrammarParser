@@ -1,9 +1,7 @@
 using System;
 using System.IO;
-using System.Linq;
 
 using GrammarParser.Lexer.Parser.Classes;
-using GrammarParser.Lexer.Rules.Classes;
 using GrammarParser.Lexer.StructureLexer.Parsers;
 using GrammarParser.Lexer.StructureLexer.Parsers.Exceptions;
 using GrammarParser.Lexer.StructureLexer.Rules;

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Library.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;

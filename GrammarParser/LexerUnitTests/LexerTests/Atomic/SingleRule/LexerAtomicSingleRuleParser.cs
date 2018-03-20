@@ -5,12 +5,10 @@ using System.Linq;
 
 using GrammarParser.Lexer;
 using GrammarParser.Lexer.RuleLexer;
+using GrammarParser.Lexer.RuleLexer.Exceptions;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
 using GrammarParser.Library.Extensions;
-using GrammarParser.RuleLexer.Exceptions;
-
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

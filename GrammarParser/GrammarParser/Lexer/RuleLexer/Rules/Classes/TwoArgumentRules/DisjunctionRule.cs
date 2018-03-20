@@ -18,7 +18,20 @@ namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules {
 
         public RulePriority Priority => RulePriority.RuleOr;
 
-        public bool Check(Stream stream) => this.LeftArgumentRule.Check(stream) || this.RightArgumentRule.Check(stream);
+        public string ChekedString { get; private set; }
+
+        public bool Check(Stream stream) {
+
+            if (this.LeftArgumentRule.Check(stream)) {
+                this.ChekedString = this.LeftArgumentRule.ChekedString;
+                return true;
+            } else if (this.RightArgumentRule.Check(stream)) {
+                this.ChekedString = this.RightArgumentRule.ChekedString;
+                return true;
+            }
+
+            return false;
+        }
 
     }
 

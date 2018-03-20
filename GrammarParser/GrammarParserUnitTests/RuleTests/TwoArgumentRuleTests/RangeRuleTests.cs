@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Library.Extensions;
 
 

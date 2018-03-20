@@ -2,11 +2,8 @@
 
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-using ITwoArgumentRule = GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules.ITwoArgumentRule;
-
-namespace GrammarParser.Lexer.Rules.Classes.TwoArgumentRules {
+namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules {
 
     public class RangeRule : ITwoArgumentRule {
 
@@ -25,6 +22,8 @@ namespace GrammarParser.Lexer.Rules.Classes.TwoArgumentRules {
 
         public RulePriority Priority => RulePriority.RuleRange;
 
+        public string ChekedString { get; private set; }
+
         public bool Check(Stream stream) {
             var startPosition = stream.Position;
             var reader = new StreamReader(stream);
@@ -32,6 +31,7 @@ namespace GrammarParser.Lexer.Rules.Classes.TwoArgumentRules {
             var result = readed >= this._leftSymbolRule.Symbol && readed <= this._rightSymbolRule.Symbol;
             reader.DiscardBufferedData();
             stream.Position = result ? startPosition + 1 : startPosition;
+            this.ChekedString = ((char)readed).ToString();
             return result;
         }
 

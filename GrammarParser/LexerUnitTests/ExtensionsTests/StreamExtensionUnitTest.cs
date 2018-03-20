@@ -146,5 +146,69 @@ namespace LexerUnitTests.ExtensionsTests {
             Assert.AreEqual(startPos + 1, endPos);
         }
 
+        //TakeOutString
+
+        [TestMethod]
+        public void TestThatTakeOutStringWorkOk() {
+            // Arrange
+
+            var str = "ahjsdvhjgafhsd";
+
+            var stream = new MemoryStream().FromString(value: $"123123{str}123123");
+
+            // Act
+
+            var startPos = stream.Position;
+
+            var result = stream.TakeOutString(7, str.Length);
+
+            var endPos = stream.Position;
+
+            // Assert
+
+            Assert.AreEqual(str, result);
+        }
+
+        [TestMethod]
+        public void TestThatTakeOutStringMakeZeroOffset() {
+            // Arrange
+
+            var str = "123456789";
+
+            var stream = new MemoryStream().FromString(value: $"123123{str}123123");
+
+            // Act
+
+            var startPos = stream.Position;
+
+            stream.TakeOutString(7, str.Length);
+
+            var endPos = stream.Position;
+
+            // Assert
+
+            Assert.AreEqual(startPos, endPos);
+        }
+
+        [TestMethod]
+        public void TestThatTakeOutStringWorkOkIfStartPointIsFirstSymbol() {
+            // Arrange
+
+            var str = "ahjsdvhjgafhsd";
+
+            var stream = new MemoryStream().FromString(value: $"{str}a");
+
+            // Act
+
+            var startPos = stream.Position;
+
+            var result = stream.TakeOutString(0, str.Length);
+
+            var endPos = stream.Position;
+
+            // Assert
+
+            Assert.AreEqual(str, result);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 
 namespace GrammarParser.Library.Extensions {
 
@@ -51,6 +52,40 @@ namespace GrammarParser.Library.Extensions {
             writer.Flush();
             stream.Position = 0;
             return stream;
+        }
+
+        /// <summary>
+        /// Достает строчку из потока.
+        /// </summary>
+        /// <param name="startPosition">Индекс с которого нчинается строка</param>
+        /// <param name="endPosition">Индекс на котором стркоа заканчивается</param>
+        /// <returns>Bpdktxtyyfz cnhrjf</returns>
+        public static string TakeOutString(this Stream stream, long startPosition, long endPosition) {
+            var startPos = stream.Position;
+
+            stream.Position = 0;
+
+            var copy = new MemoryStream();
+
+            stream.CopyTo(copy);
+
+            stream.Position = startPos;
+
+            copy.Position = startPosition == 0 ? 0 : startPosition -1;
+
+            var reader = new StreamReader(copy);
+
+            var builder = new StringBuilder();
+
+            for (var i = 0; i < endPosition && !reader.EndOfStream; i++) {
+                builder.Append((char)reader.Read());
+            }
+
+            reader.DiscardBufferedData();
+            reader.Close();
+            copy.Close();
+
+            return builder.ToString();
         }
 
     }

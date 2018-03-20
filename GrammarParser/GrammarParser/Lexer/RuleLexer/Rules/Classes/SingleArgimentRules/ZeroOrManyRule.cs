@@ -1,12 +1,10 @@
 ﻿using System.IO;
+using System.Text;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-using ISingleArgumentRule = GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules.ISingleArgumentRule;
-
-namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
+namespace GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules {
 
     public class ZeroOrManyRule : ISingleArgumentRule {
 
@@ -16,9 +14,15 @@ namespace GrammarParser.Lexer.Rules.Classes.SingleArgimentRules {
 
         public RulePriority Priority => RulePriority.RuleZeroOrMany;
 
-        public bool Check(Stream stream) {
-            while (this.ArgumentRule.Check(stream)) { }
+        public string ChekedString { get; private set; }
 
+        public bool Check(Stream stream) {
+            var builder = new StringBuilder(string.Empty);
+            while (this.ArgumentRule.Check(stream)) {
+                builder.Append(this.ArgumentRule.ChekedString);
+            }
+
+            this.ChekedString = builder.ToString();
             return true;
         }
 

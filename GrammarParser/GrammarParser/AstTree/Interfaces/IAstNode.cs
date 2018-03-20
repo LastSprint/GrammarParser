@@ -8,6 +8,11 @@ namespace GrammarParser.AstTree.Interfaces {
         IList<IAstNode> Childs { get; }
 
         /// <summary>
+        /// Тот текст, который подошел этому узлу. (был им разорбран)
+        /// </summary>
+        string ParsedResult { get; }
+
+        /// <summary>
         /// Проверяет поток на удовлетворение этому узлу дерева и сдвигает указатель чтения потока на нужное кол-во символов. 
         /// В противном случае возвращает false.
         /// </summary>

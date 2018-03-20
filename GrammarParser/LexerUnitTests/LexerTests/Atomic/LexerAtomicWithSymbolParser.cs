@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using GrammarParser.Lexer;
 using GrammarParser.Lexer.Injections;
-using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.RuleLexer;
-using GrammarParser.Lexer.Rules.Classes;
+using GrammarParser.Lexer.RuleLexer.Configurations;
+using GrammarParser.Lexer.RuleLexer.Exceptions;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Library.Extensions;
-using GrammarParser.RuleLexer;
-using GrammarParser.RuleLexer.Configurations;
-using GrammarParser.RuleLexer.Exceptions;
 using GrammarParser.RuleLexer.Injections.Injectors.Atomic;
 
 

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
-using GrammarParser.Lexer.Rules.Interfaces;
 
-namespace GrammarParser.Lexer.Rules.Classes {
+namespace GrammarParser.Lexer.RuleLexer.Rules.Classes {
 
     public class GroupRule : IRule {
 
@@ -18,13 +18,19 @@ namespace GrammarParser.Lexer.Rules.Classes {
 
         public RulePriority Priority { get; }
 
+        public string ChekedString { get; private set; }
+
         public bool Check(Stream stream) {
+            var builder = new StringBuilder();
             foreach (var nestedRule in this.NestedRules) {
                 if (!nestedRule.Check(stream)) {
                     return false;
                 }
+
+                builder.Append(nestedRule.ChekedString);
             }
 
+            this.ChekedString = builder.ToString();
             return true;
         }
 

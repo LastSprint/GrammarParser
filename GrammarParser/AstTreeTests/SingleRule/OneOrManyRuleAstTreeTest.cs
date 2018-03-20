@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.AstTree;
-using GrammarParser.Lexer;
 using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Library.Extensions;
 
@@ -16,8 +15,8 @@ namespace AstTreeTests.SingleRule {
 
     [TestClass]
     public class OneOrManyRuleAstTreeTest : SingleRuleAstTreeTest {
-        public override ILexer Lexer => new LexerAtomicOneOrManyParser().Lexer;
-        public override char Symbol => new LexerAtomicOneOrManyParser().Symbol;
+        public override ILexer Lexer => new LexerAtomicOneOrManyParserTests().Lexer;
+        public override char Symbol => new LexerAtomicOneOrManyParserTests().Symbol;
 
         [TestMethod]
         public void TestThatLexerGenerateRightTreeFromOneSymbolAndCheckSuccessedWithEmptyString()

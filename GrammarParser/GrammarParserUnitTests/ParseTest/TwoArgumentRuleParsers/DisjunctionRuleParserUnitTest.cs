@@ -5,12 +5,10 @@ using GrammarParser.Lexer.Injections.Injectors;
 using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Exceptions;
+using GrammarParser.Lexer.RuleLexer.Configurations;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes.TwoArgumentRules;
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.TwoArgumentRules;
 using GrammarParser.Library.Extensions;
-using GrammarParser.RuleLexer.Configurations;
-
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

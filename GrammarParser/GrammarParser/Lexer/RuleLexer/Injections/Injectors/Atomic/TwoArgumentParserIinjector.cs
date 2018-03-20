@@ -3,6 +3,7 @@
 using GrammarParser.Lexer.Injections;
 using GrammarParser.Lexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Parser.Classes.RuleParsers.TwoArgumentRuleParsers;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Library;
 

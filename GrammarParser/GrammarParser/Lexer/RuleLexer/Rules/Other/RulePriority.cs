@@ -1,10 +1,5 @@
-﻿// GrammarParser
-// RulePriority.cs
-// Created 18.02.2018
-// By Александр Кравченков
-
-using GrammarParser.Lexer.Rules.Classes;
-using GrammarParser.Lexer.Rules.Classes.SingleArgimentRules;
+﻿using GrammarParser.Lexer.RuleLexer.Rules.Classes;
+using GrammarParser.Lexer.RuleLexer.Rules.Classes.SingleArgimentRules;
 
 namespace GrammarParser.Lexer.RuleLexer.Rules.Other {
 
@@ -57,4 +52,5 @@ namespace GrammarParser.Lexer.RuleLexer.Rules.Other {
         UserRule = 4
 
     }
+
 }

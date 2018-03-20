@@ -1,13 +1,10 @@
 ﻿using System.IO;
 
-using GrammarParser.Lexer;
 using GrammarParser.Lexer.Injections.Injectors;
-using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Library;
 
-namespace GrammarParser.RuleLexer.Configurations {
+namespace GrammarParser.Lexer.RuleLexer.Configurations {
 
     public class LexerBuilder : IBuilder<ILexer, Stream> {
 

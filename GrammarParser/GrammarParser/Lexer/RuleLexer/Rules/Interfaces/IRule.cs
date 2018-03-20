@@ -1,9 +1,4 @@
-﻿// GrammarParser
-// IRule.cs
-// Created 18.02.2018
-// By Александр Кравченков
-
-using System.IO;
+﻿using System.IO;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
 
@@ -20,6 +15,11 @@ namespace GrammarParser.Lexer.RuleLexer.Rules.Interfaces {
         RulePriority Priority { get; }
 
         /// <summary>
+        /// После чека здесь может появится значение строки, которое прошло чек. 
+        /// </summary>
+        string ChekedString { get; }
+
+        /// <summary>
         ///     Проверяет поток входных символов на соответствие конкретному правилу.
         ///     Причем, в случае, если результат проверки верный, то указатель потока сдвигается вперед на прочитанное кол-во
         ///     элементов.
@@ -29,7 +29,5 @@ namespace GrammarParser.Lexer.RuleLexer.Rules.Interfaces {
         /// <param name="stream">Поток входных символов.</param>
         /// <returns>true - если поток соответствует правилу и false в противном случае</returns>
         bool Check(Stream stream);
-
     }
-
 }
