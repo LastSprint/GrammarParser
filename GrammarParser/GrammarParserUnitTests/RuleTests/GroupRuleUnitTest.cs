@@ -317,24 +317,54 @@ namespace GrammarParserUnitTests.RuleTests {
         }
 
         [TestMethod]
-        public void TestSuccessChekingSpecialSymbol() {
+        public void TestRighSringSavedInSuccessCase() {
 
             // Arrange
 
-            var symbol = '\r';
-            var rule = new SymbolRule(symbol: symbol);
+            var symbol1 = 'g';
+            var symbol2 = 'b';
 
-            var stream = new MemoryStream().FromString("\rtnmp");
+            var rule11 = new SymbolRule(symbol: symbol1);
+            var rule1 = new OneOrManyRule(rule11);
+            var rule22 = new SymbolRule(symbol: symbol2);
+            var rule2 = new ZeroOrManyRule(rule22);
+            var rule = new GroupRule(new List<IRule> { rule1, rule2 });
+
+            var str = $"{symbol1}{symbol1}{symbol1}{symbol1}{symbol1}{symbol2}{symbol2}";
+            var stream = new MemoryStream().FromString(str);
+
 
             // Act
-            var startPos = stream.Position;
+
+            var result = rule.Check(stream);
+
+            // Assert
+
+            Assert.AreEqual(str, rule.ChekedString);
+        }
+
+        [TestMethod]
+        public void TestRighSringSavedInFaledCase() {
+            
+            var symbol1 = 'g';
+            var symbol2 = 'b';
+
+            var rule11 = new SymbolRule(symbol: symbol1);
+            var rule1 = new OneOrManyRule(rule11);
+            var rule22 = new SymbolRule(symbol: symbol2);
+            var rule2 = new ZeroOrManyRule(rule22);
+            var rule = new GroupRule(new List<IRule> { rule1, rule2 });
+
+            var str = $"${symbol2}";
+            var stream = new MemoryStream().FromString(str);
+
+            // Act
             rule.Check(stream);
 
             // Assert
 
-            Assert.AreEqual(startPos + 1, stream.Position);
+            Assert.AreEqual(string.Empty, rule.ChekedString);
         }
-
 
     }
 }

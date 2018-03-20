@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using GrammarParser.Lexer;
 using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Lexer.RuleLexer.Exceptions;
 using GrammarParser.Lexer.RuleLexer.Rules.Classes;

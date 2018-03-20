@@ -1,8 +1,3 @@
-// GrammarParserUnitTests
-// SymbolRuleUnitTest.cs
-// Created 18.02.2018
-// By Александр Кравченков
-
 using System.IO;
 
 using GrammarParser.Lexer.RuleLexer.Rules.Classes;
@@ -136,6 +131,40 @@ namespace GrammarParserUnitTests.RuleTests {
             // Assert
 
             Assert.AreEqual(startPos + 1, stream.Position);
+        }
+
+        [TestMethod]
+        public void TestRighSringSavedInSuccessCase() {
+
+            // Arrange
+
+            var symbol = 'a';
+            var rule = new SymbolRule(symbol: symbol);
+            var stream = new MemoryStream().FromString($"{symbol}");
+
+            // Act
+            rule.Check(stream);
+
+            // Assert
+
+            Assert.AreEqual(symbol.ToString(), rule.ChekedString);
+        }
+
+        [TestMethod]
+        public void TestRighSringSavedInFaledCase() {
+
+            // Arrange
+
+            var symbol = 'a';
+            var rule = new SymbolRule(symbol: symbol);
+            var stream = new MemoryStream().FromString($"{symbol + 1}");
+
+            // Act
+            rule.Check(stream);
+
+            // Assert
+
+            Assert.AreEqual(string.Empty, rule.ChekedString);
         }
     }
 }
