@@ -8,6 +8,7 @@ using GrammarParser.Lexer.RuleLexer.Rules.Other;
 using GrammarParser.Lexer.StructureLexer.Models;
 using GrammarParser.Library.Extensions;
 using GrammarParser.TokenTree;
+using static System.String;
 
 namespace GrammarParser.Lexer.StructureLexer.Rules {
 
@@ -45,8 +46,10 @@ namespace GrammarParser.Lexer.StructureLexer.Rules {
 
         public bool Check(Stream stream) {
 
+            this.ChekedString = Empty;
             if (this._tree == null) {
-                this._tree = new AstTree.AstTree(LexerBuilder.DefaultAstLexer.Parse(stream));
+                var ruleStream = new MemoryStream().FromString(this.RulePattern);
+                this._tree = new AstTree.AstTree(LexerBuilder.DefaultAstLexer.Parse(ruleStream));
             }
 
             var result = false;
@@ -57,20 +60,21 @@ namespace GrammarParser.Lexer.StructureLexer.Rules {
                 result = false;
             }
 
+            this.ChekedString = this._tree.ParsedResult;
             return result;
         }
 
         public ITokenNode Convert() {
-            //var list = new List<IAstNode>();
-            //this._tree.DeepWalk( x=> list.Add(x));
+            var list = new List<IAstNode>();
+            this._tree.DeepWalk(x => list.Add(x));
 
-            //var childs = new List<ITokenNode>();
+            var childs = new List<ITokenNode>();
 
-            //foreach (var child in this.TokenConvertionPattern.Childs) {
-            //    childs.Add(new TokenNode(child.Key,));
-            //}
+            foreach (var child in this.TokenConvertionPattern.Childs) {
+                childs.Add(new TokenNode(child.Key, list[child.Value].ParsedResult));
+            }
 
-            return null;
+            return new TokenNode(this.TokenConvertionPattern.Name, null, childs);
         }
 
     }

@@ -75,9 +75,11 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
                 ?.TrimStart();
             var rulePattern = this.ExecutePart(context.CurrentStream, ConvertionOperator.First(),
                 ConvertionOperator.Last())
-                ?.Trim();
+                ?.TrimEnd()
+                ?.TrimStart();
             var tokenPattern = this.ExecutePart(context.CurrentStream, RuleEndTerminator)
-                ?.Trim()
+                ?.TrimEnd()
+                ?.TrimStart()
                 ?.Remove(0, 1);
 
             return (name: name, rulePattern: rulePattern, tokenPattern: tokenPattern);

@@ -6,6 +6,6 @@ namespace GrammarParser.TokenTree {
         string Name { get; }
         string Value { get; }
 
-        IList<TokenNode> Childs { get; }
+        IList<ITokenNode> Childs { get; }
     }
 }

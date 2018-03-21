@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 using GrammarParser.AstTree.Interfaces;
 using GrammarParser.Lexer.Parser.Interfaces;
@@ -16,6 +15,8 @@ namespace GrammarParser.AstTree {
         public int NodeCount { get; private set; }
 
         public IList<IAstNode> Childs => this.Root.Childs;
+         
+        public string ParsedResult => this.Root?.ParsedResult;
 
         public AstTree(IParserImmutableContext context) {
             this.NodeCount = 0;

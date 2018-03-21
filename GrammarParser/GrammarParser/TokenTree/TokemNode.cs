@@ -7,12 +7,12 @@ namespace GrammarParser.TokenTree {
         public string Name { get; }
         public string Value { get; }
 
-        public IList<TokenNode> Childs { get; }
+        public IList<ITokenNode> Childs { get; }
 
-        public TokenNode(string name, string value, IList<TokenNode> childs = null) {
+        public TokenNode(string name, string value, IList<ITokenNode> childs = null) {
             this.Name = name;
             this.Value = value;
-            this.Childs = childs ?? new List<TokenNode>();
+            this.Childs = childs ?? new List<ITokenNode>();
         }
 
     }
