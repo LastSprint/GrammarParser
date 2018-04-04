@@ -4,6 +4,7 @@ using System.IO;
 using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.Rules.Interfaces;
+using GrammarParser.Lexer.StructureLexer.Rules;
 using GrammarParser.Library;
 
 namespace GrammarParser.Lexer.Parser.Interfaces {
@@ -21,6 +22,8 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         /// </summary>
         IReadOnlyCollection<IRule> CurrentRuleCollection { get; }
 
+        IReadOnlyCollection<UserRule> UserRules { get; }
+
         /// <summary>
         ///     Поток разбираемых лексем.
         /// </summary>
@@ -37,7 +40,6 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
         ///     <see cref="Stack{T}.Peek" /> только этот вернет null если пуcто.
         /// </summary>
         IRule Peek();
-
     }
 
     /// <summary>
