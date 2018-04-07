@@ -29,6 +29,13 @@ namespace GrammarParser.Library {
             this.IsEndEqual = isEndEqual;
         }
 
+        public CharRange(char symbol) {
+            this.StartSymbol = symbol;
+            this.EndSymbol = symbol;
+            this.IsStartEqual = true;
+            this.IsEndEqual = true;
+        }
+
         public CharRange(char? startSymbol, char? endSymbol) : this(startSymbol, endSymbol, false, false) { }
 
         public bool Contains(char symbol) {
@@ -88,4 +95,11 @@ public static class CharacterSet {
     public static IRange<char> AllLettersAndNumbers = new CharRangeAgregator(new List<IRange<char>> {
         AllLetters, Numbers
     });
+
+    public static IRange<char> SpaceSymbols = new CharRangeAgregator(new List<IRange<char>> {
+        new CharRange(' '),
+        new CharRange('\r'),
+        new CharRange('\n'),
+        new CharRange('\t')
+}); 
 }

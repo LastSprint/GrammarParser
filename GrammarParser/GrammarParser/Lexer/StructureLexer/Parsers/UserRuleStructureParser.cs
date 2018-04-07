@@ -1,34 +1,58 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+
+using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
+using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
+using GrammarParser.Lexer.StructureLexer.Rules;
+using GrammarParser.Library.Extensions;
 
 namespace GrammarParser.Lexer.StructureLexer.Parsers {
 
     /// <summary>
-    ///  Предполагается получить контент структуры
+    ///  Предполагается получить контекст структуры
     /// </summary>
     public class UserRuleStructureParser {
 
+        public const string BlockName = "Rules";
+
         private UserRuleParser _parser;
-        private IParserContext _context;
+        private IParserImmutableContext _context;
 
         public UserRuleStructureParser(UserRuleParser parser) {
             this._parser = parser;
         }
 
-        //IList<UserRule> Parse(Stream stream) {
-        //    this._context = new DefaultParserContext(stream: stream );
-        //    var poition = stream.Position;
-        //    var builder = new StringBuilder();
-        //    var rules = new List<UserRule>();
-        //    var rule = this.ReadRule(stream);
+        public IList<UserRule> Parse(IParserImmutableContext context) {
+            this._context = context;
+            var stream = context.CurrentStream;
+            var poition = stream.Position;
+            var rules = new List<UserRule>();
 
-        //    while (rule != null) {
-        //        var parsed = this._parser.Parse(this._context) as UserRule;
-        //        this._context.ParsedRules.Push(parsed);
-        //        rule = this.ReadRule(stream);
-        //    }
-        //}
+            try {
+                while(true) {
+                    var pos = stream.Position;
+
+                    if (stream.NextWithSkipedEmpty() == '}')
+                    {
+                        return rules;
+                    }
+
+                    stream.Position = pos;
+
+                    var parsed = this._parser.Parse(this._context) as UserRule;
+                    rules.Add(parsed);
+                }
+
+            }
+            catch {
+                stream.Position = poition;
+                throw;
+            }
+        }
 
         private string ReadRule(Stream stream) {
             var position = stream.Position;
@@ -37,21 +61,31 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
             var reader = new StreamReader(stream);
 
             char current;
-            var next = (char)reader.Read();
+            var next = (char) reader.Peek();
 
             do {
+                current = (char)reader.Read();
+                next = (char)reader.Peek();
 
-                if (reader.EndOfStream) {
+                
+                if (current == UserRuleParser.RuleEndTerminator)
+                {
+                    if (next != '\'')
+                    {
+                        break;
+                    }
+                }
+
+                builder.Append(current);
+
+                if (reader.EndOfStream)
+                {
                     reader.DiscardBufferedData();
                     stream.Position = position;
 
                     return null;
                 }
-
-                current = next;
-                next = (char)reader.Read();
-                builder.Append(current);
-            } while (current != ';' && next != '\'');
+            } while (true);
 
             stream.Position = position + builder.Length;
 
