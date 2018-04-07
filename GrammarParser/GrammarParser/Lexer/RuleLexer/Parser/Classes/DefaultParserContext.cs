@@ -5,7 +5,6 @@ using System.Linq;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
-using GrammarParser.Lexer.Rules.Interfaces;
 using GrammarParser.Lexer.StructureLexer.Rules;
 using GrammarParser.Library;
 
@@ -44,7 +43,5 @@ namespace GrammarParser.Lexer.Parser.Classes {
 
             return result;
         }
-
     }
-
 }

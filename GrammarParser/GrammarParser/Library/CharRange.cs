@@ -68,7 +68,7 @@ namespace GrammarParser.Library {
 
 
         public bool Contains(char element) {
-            return this._ranges.All(x => x.Contains(element));
+            return this._ranges.Any(x => x.Contains(element));
         }
     }
 }
