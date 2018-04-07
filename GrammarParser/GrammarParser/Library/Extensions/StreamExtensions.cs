@@ -88,5 +88,25 @@ namespace GrammarParser.Library.Extensions {
             return builder.ToString();
         }
 
+        public static char? NextWithSkipedEmpty(this Stream stream) {
+            var startPos = stream.Position;
+            var reader = new StreamReader(stream);
+            char readed;
+            var index = 0;
+
+            do {
+
+                if (reader.EndOfStream) {
+                    stream.Position = startPos;
+                    return null;
+                }
+
+                readed = (char)reader.Read();
+            } while (CharacterSet.SpaceSymbols.Contains(readed));
+
+            stream.Position = startPos + index;
+            return readed;
+        }
+
     }
 }

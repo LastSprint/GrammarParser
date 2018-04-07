@@ -38,7 +38,7 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
             return !condition;
         }
 
-        public IRule Parse(IParserImmutableContext context) {
+        public IRule  Parse(IParserImmutableContext context) {
 
             var (name, rulePattern, tokenPattern) = this.TryParse(context);
 
