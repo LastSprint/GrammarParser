@@ -102,11 +102,11 @@ namespace GrammarParser.Library.Extensions {
                 }
 
                 readed = (char)reader.Read();
+                index++;
             } while (CharacterSet.SpaceSymbols.Contains(readed));
 
-            stream.Position = startPos + index;
+            stream.Position = startPos + index - 1;
             return readed;
         }
-
     }
 }

@@ -126,7 +126,7 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
                     return null;
                 }
 
-                if (keyValue[0] == NameTokenString) {
+                if (keyValue[0].Trim() == NameTokenString) {
                     name = keyValue[1]
                         .Replace("\"", string.Empty)
                         .TrimEnd()
