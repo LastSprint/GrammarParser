@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
-using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
-using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
 using GrammarParser.Lexer.StructureLexer.Rules;
 using GrammarParser.Library.Extensions;
 
