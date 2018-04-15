@@ -38,6 +38,7 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
 
                     if (stream.NextWithSkipedEmpty() == '}')
                     {
+                        stream.TryToSeekToNext();
                         return rules;
                     }
 

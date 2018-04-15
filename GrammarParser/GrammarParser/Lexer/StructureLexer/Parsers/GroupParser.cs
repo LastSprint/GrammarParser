@@ -63,7 +63,7 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
                 stream.TryToSeekToNext();
                 startSymbol = stream.CurrentSymbol();
             }
-
+            stream.TryToSeekToNext();
             return name.Trim();
         }
 
