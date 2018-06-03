@@ -60,7 +60,7 @@ namespace StrucutreParserTests.Groups {
             var name1 = "space";
             var name2 = "test";
             var text = "block Rule {\r\n    space: \'\r\'|\'\n\'|\'\t\'|\' \' => Name: \"space\", first:1;\r\n" +
-                       "test: \'a\'|(space) => Name: \"test\", furst:1;\r\n" +
+                       "test: \'a\'|\'a\' => Name: \"test\", furst:1;\r\n" +
                        "}";
             var stream = new MemoryStream().FromString(text);
 

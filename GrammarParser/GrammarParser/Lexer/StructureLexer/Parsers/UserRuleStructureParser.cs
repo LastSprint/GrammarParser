@@ -32,13 +32,12 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
                 while(true) {
                     var pos = stream.Position;
 
-                    if (stream.NextWithSkipedEmpty() == '}')
-                    {
+                    if (stream.NextWithSkipedEmpty() == '}') {
                         stream.TryToSeekToNext();
                         return rules;
                     }
 
-                    stream.Position = pos;
+                    //stream.Position = pos;
 
                     var parsed = this._parser.Parse(this._context) as UserRule;
                     rules.Add(parsed);
@@ -47,7 +46,7 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
             }
             catch {
                 stream.Position = poition;
-                throw;
+                 throw;
             }
         }
 

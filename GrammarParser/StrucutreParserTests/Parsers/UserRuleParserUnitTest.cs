@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 using GrammarParser.Lexer.Parser.Classes;
+using GrammarParser.Lexer.StructureLexer.Models;
 using GrammarParser.Lexer.StructureLexer.Parsers;
 using GrammarParser.Lexer.StructureLexer.Parsers.Exceptions;
 using GrammarParser.Lexer.StructureLexer.Rules;
@@ -200,6 +202,39 @@ namespace StrucutreParserTests.Parsers {
             // Assert
 
             Assert.ThrowsException<UserRuleParserBadTokenExpressionException>(action);
+        }
+
+        [TestMethod]
+        public void TestSuccessParseUserCall() {
+
+            // Arrange
+
+            var name = "Name";
+            var firstArg = "first";
+            var tokenName = "OLOLOLOL";
+            var firstVal = "1";
+            var pattern =
+                "ru|ur";
+            var token = $"{UserRuleParser.NameTokenString}{UserRuleParser.TokenKeyValueDivider} \"{tokenName}\"{UserRuleParser.TokenExpressionDivider} {firstArg}{UserRuleParser.TokenKeyValueDivider} {firstVal}";
+
+            var str =
+                $"{name}{UserRuleParser.RuleNameEndTerminator}{pattern}{UserRuleParser.ConvertionOperator}{token}{UserRuleParser.RuleEndTerminator}";
+
+            var stream = new MemoryStream().FromString(str);
+            var context = new DefaultParserContext(stream: stream);
+            context.ParsedRules.Push(new UserRule("ru","\'a\'",new TokenExpression("ru", new Dictionary<string, int>())));
+
+            context.ParsedRules.Push(new UserRule("ur", "\'a\'", new TokenExpression("ur", new Dictionary<string, int>())));
+            var parser = new UserRuleParser();
+
+            // Act
+
+            var result = parser.Parse(context);
+
+
+            // Assert
+            
+            Assert.IsNotNull(result);
         }
     }
 }
