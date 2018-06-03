@@ -1,6 +1,7 @@
 ﻿using System.IO;
 
 using GrammarParser.Lexer.Injections.Injectors;
+using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Library;
 
@@ -15,6 +16,8 @@ namespace GrammarParser.Lexer.RuleLexer.Configurations {
         public LexerBuilder(IInjector<IParser> parserInjector) => this._parserInjector = parserInjector;
 
         public ILexer Build(Stream arg) => new Lexer(this._parserInjector.Injection(), this);
+
+       
 
     }
 

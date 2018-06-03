@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 
 using GrammarParser.AstTree.Interfaces;
+using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Configurations;
 using GrammarParser.Lexer.RuleLexer.Rules.Other;
 using GrammarParser.Lexer.StructureLexer.Models;
@@ -34,10 +35,11 @@ namespace GrammarParser.Lexer.StructureLexer.Rules {
             this.TokenConvertionPattern = tokenConvertionPattern;
         }
 
-        public bool IsValid() {
+        public bool IsValid(IParserImmutableContext context) {
 
             var stream = new MemoryStream().FromString(this.RulePattern);
-            var tree = new AstTree.AstTree(LexerBuilder.DefaultAstLexer.Parse(stream));
+            var lexer = LexerBuilder.DefaultAstLexer;
+            var tree = new AstTree.AstTree(lexer.Parse(stream));
             
             this._tree = tree;
 

@@ -12,6 +12,19 @@ namespace GrammarParser.Lexer.Parser.Classes {
 
     public class DefaultParserContext : IParserContext {
 
+        private static DefaultParserContext _globalContext; 
+
+        //  FIXIT: - Make session parsing
+        public static DefaultParserContext GlobalContext {
+            get {
+                if (_globalContext == null) {
+                    _globalContext = new DefaultParserContext(null);
+                }
+
+                return _globalContext;
+            }
+        }
+
         public DefaultParserContext(Stream stream) {
             this.CurrentStream = stream;
             this.ParsedRules = new Stack<IRule>();

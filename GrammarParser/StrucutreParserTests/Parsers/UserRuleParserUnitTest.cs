@@ -222,10 +222,10 @@ namespace StrucutreParserTests.Parsers {
 
             var stream = new MemoryStream().FromString(str);
             var context = new DefaultParserContext(stream: stream);
-            context.ParsedRules.Push(new UserRule("ru","\'a\'",new TokenExpression("ru", new Dictionary<string, int>())));
-
-            context.ParsedRules.Push(new UserRule("ur", "\'a\'", new TokenExpression("ur", new Dictionary<string, int>())));
             var parser = new UserRuleParser();
+
+            DefaultParserContext.GlobalContext.ParsedRules.Push(new UserRule("ru", "\'a\'", new TokenExpression("ru", new Dictionary<string, int>())));
+            DefaultParserContext.GlobalContext.ParsedRules.Push(new UserRule("ur", "\'a\'", new TokenExpression("ur", new Dictionary<string, int>())));
 
             // Act
 

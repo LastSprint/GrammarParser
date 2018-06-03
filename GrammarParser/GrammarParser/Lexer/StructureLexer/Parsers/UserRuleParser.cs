@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Rules.Interfaces;
@@ -62,9 +63,11 @@ namespace GrammarParser.Lexer.StructureLexer.Parsers {
 
             var rule = new UserRule(name: name, rulePattern: rulePattern, tokenConvertionPattern: tokenExpression);
 
-            if (!rule.IsValid()) {
+            if (!rule.IsValid(context)) {
                 throw new UserRuleParserBadTokenExpressionException();
             }
+
+            DefaultParserContext.GlobalContext.ParsedRules.Push(rule);
 
             return rule;
         }

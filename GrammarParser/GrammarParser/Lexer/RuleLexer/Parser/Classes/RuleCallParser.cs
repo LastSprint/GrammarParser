@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+
+using GrammarParser.Lexer.Parser.Classes;
 using GrammarParser.Lexer.Parser.Interfaces;
 using GrammarParser.Lexer.RuleLexer.Parser.Exceptions;
 using GrammarParser.Lexer.RuleLexer.Parser.Interfaces;
@@ -13,13 +15,14 @@ namespace GrammarParser.Lexer.RuleLexer.Parser.Classes {
     public class RuleCallParser: IParser {
 
         public bool IsCurrentRule(IParserImmutableContext context) {
-            var name = this.ReadRuleName(context.CurrentStream);
-            return context.UserRules.FirstOrDefault(x => x.Name == name) != default(UserRule);
+             var name = this.ReadRuleName(context.CurrentStream);
+            return DefaultParserContext.GlobalContext.UserRules.FirstOrDefault(x => x.Name == name) != default(UserRule);
+            //return context.UserRules.FirstOrDefault(x => x.Name == name) != default(UserRule);
         }
 
         public IRule Parse(IParserImmutableContext context) {
             var name = this.ReadRuleName(context.CurrentStream);
-            var rule = context.UserRules.FirstOrDefault(x => x.Name == name);
+            var rule = DefaultParserContext.GlobalContext.UserRules.FirstOrDefault(x => x.Name == name) ?? context.UserRules.FirstOrDefault(x => x.Name == name);
             if (rule == null) {
                 throw new BadRuleNameException(name, context);
             }

@@ -13,7 +13,7 @@ namespace GrammarParser.Lexer.Parser.Interfaces {
     ///     Контекст парсера. Содержит информацию о текущем состоянии парсера.
     ///     Неизменяемый.
     /// </summary>
-    public interface IParserImmutableContext {
+    public interface  IParserImmutableContext {
 
         IBuilder<ILexer, Stream> LexerBuilder { get; }
 
